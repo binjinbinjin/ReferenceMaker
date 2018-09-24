@@ -1,0 +1,39 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "job.apply.reference.backend",
+      "nativeLanguage": "en"
+    },
+    "jhipsterVersion": "5.3.4",
+    "applicationType": "monolith",
+    "baseName": "referenceRecord",
+    "packageName": "job.apply.reference.backend",
+    "packageFolder": "job/apply/reference/backend",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "ZjYyY2IzZjk3ODM3N2RhNzU3MDUwODJkZDNiNWE2MjI5MzhhMDYwNDY4ZGRlMGIzZTg3MDU1M2I0YTNkYjdiMDEzN2E3YTM5YzI5MDRmMjA4NjNiMzI4ZjdkZTMwMmQ5YjQ4MGRjZWE1YjEyMDVhMjMyMDQxZmI3ODNjOGU3ODc=",
+    "clientFramework": "angularX",
+    "useSass": false,
+    "clientPackageManager": "npm",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "enableTranslation": true,
+    "nativeLanguage": "en",
+    "languages": [
+      "en",
+      "zh-cn",
+      "zh-tw"
+    ]
+  }
+}
