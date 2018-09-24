@@ -1,0 +1,22 @@
+
+{
+    "referenceRecordApp": {
+        "referenceFile" : {
+            "home": {
+                "title": "Reference Files",
+                "createLabel": "创建新 Reference File",
+                "createOrEditLabel": "创建或编辑 Reference File"
+            },
+            "created": "Reference File {{ param }} 创建成功",
+            "updated": "Reference File {{ param }} 更新成功",
+            "deleted": "Reference File {{ param }} 删除成功",
+            "delete": {
+                "question": "你确定要删除 Reference File {{ id }} 吗？"
+            },
+            "detail": {
+                "title": "Reference File"
+            },
+            "file": "File"
+        }
+    }
+}

@@ -1,0 +1,22 @@
+
+{
+    "referenceRecordApp": {
+        "referenceFile" : {
+            "home": {
+                "title": "Reference Files",
+                "createLabel": "Create a new Reference File",
+                "createOrEditLabel": "Create or edit a Reference File"
+            },
+            "created": "A new Reference File is created with identifier {{ param }}",
+            "updated": "A Reference File is updated with identifier {{ param }}",
+            "deleted": "A Reference File is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Reference File {{ id }}?"
+            },
+            "detail": {
+                "title": "Reference File"
+            },
+            "file": "File"
+        }
+    }
+}

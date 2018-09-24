@@ -1,0 +1,61 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="reference">
+            <h2><span jhiTranslate="referenceRecordApp.reference.detail.title">Reference</span> {{reference.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="referenceRecordApp.reference.company">Company</span></dt>
+                <dd>
+                    <span>{{reference.company}}</span>
+                </dd>
+                <dt><span jhiTranslate="referenceRecordApp.reference.applyTime">Apply Time</span></dt>
+                <dd>
+                    <span>{{reference.applyTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="referenceRecordApp.reference.location">Location</span></dt>
+                <dd>
+                    <div *ngIf="reference.locationId">
+                        <a [routerLink]="['/location-my-suffix', reference.locationId, 'view']">{{reference.locationId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="referenceRecordApp.reference.resume">Resume</span></dt>
+                <dd>
+                    <div *ngIf="reference.resumeId">
+                        <a [routerLink]="['/resume-my-suffix', reference.resumeId, 'view']">{{reference.resumeId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="referenceRecordApp.reference.cover">Cover</span></dt>
+                <dd>
+                    <div *ngIf="reference.coverId">
+                        <a [routerLink]="['/cover-letter-my-suffix', reference.coverId, 'view']">{{reference.coverId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="referenceRecordApp.reference.referenceFile">Reference File</span></dt>
+                <dd>
+                    <div *ngIf="reference.referenceFileId">
+                        <a [routerLink]="['/reference-file-my-suffix', reference.referenceFileId, 'view']">{{reference.referenceFileId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="referenceRecordApp.reference.jobTitle">Job Title</span></dt>
+                <dd>
+                    <div *ngIf="reference.jobTitleId">
+                        <a [routerLink]="['/job-title-my-suffix', reference.jobTitleId, 'view']">{{reference.jobTitleId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/reference-my-suffix', reference.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

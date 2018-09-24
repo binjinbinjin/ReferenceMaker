@@ -41,6 +41,12 @@ public class CacheConfiguration {
             cm.createCache(job.apply.reference.backend.domain.User.class.getName(), jcacheConfiguration);
             cm.createCache(job.apply.reference.backend.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(job.apply.reference.backend.domain.User.class.getName() + ".authorities", jcacheConfiguration);
+            cm.createCache(job.apply.reference.backend.domain.Reference.class.getName(), jcacheConfiguration);
+            cm.createCache(job.apply.reference.backend.domain.JobTitle.class.getName(), jcacheConfiguration);
+            cm.createCache(job.apply.reference.backend.domain.Location.class.getName(), jcacheConfiguration);
+            cm.createCache(job.apply.reference.backend.domain.Resume.class.getName(), jcacheConfiguration);
+            cm.createCache(job.apply.reference.backend.domain.CoverLetter.class.getName(), jcacheConfiguration);
+            cm.createCache(job.apply.reference.backend.domain.ReferenceFile.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

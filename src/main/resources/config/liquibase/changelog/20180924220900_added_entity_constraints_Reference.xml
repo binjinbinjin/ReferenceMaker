@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Reference.
+    -->
+    <changeSet id="20180924220900-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="location_id"
+                                 baseTableName="reference"
+                                 constraintName="fk_reference_location_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="location"/>
+
+        <addForeignKeyConstraint baseColumnNames="resume_id"
+                                 baseTableName="reference"
+                                 constraintName="fk_reference_resume_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="resume"/>
+
+        <addForeignKeyConstraint baseColumnNames="cover_id"
+                                 baseTableName="reference"
+                                 constraintName="fk_reference_cover_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cover_letter"/>
+
+        <addForeignKeyConstraint baseColumnNames="reference_file_id"
+                                 baseTableName="reference"
+                                 constraintName="fk_reference_reference_file_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="reference_file"/>
+
+        <addForeignKeyConstraint baseColumnNames="job_title_id"
+                                 baseTableName="reference"
+                                 constraintName="fk_reference_job_title_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="job_title"/>
+
+    </changeSet>
+</databaseChangeLog>

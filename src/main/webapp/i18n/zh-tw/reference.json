@@ -1,0 +1,28 @@
+
+{
+    "referenceRecordApp": {
+        "reference" : {
+            "home": {
+                "title": "References",
+                "createLabel": "建立一筆新的 Reference",
+                "createOrEditLabel": "建立或編輯 Reference"
+            },
+            "created": "新的 Reference 建立成功，識別碼為 {{ param }}",
+            "updated": "識別碼為 {{ param }} 的 Reference 更新成功",
+            "deleted": "識別碼為 {{ param }} 的 Reference 刪除成功",
+            "delete": {
+                "question": "您確定要刪除 Reference {{ id }} 嗎?"
+            },
+            "detail": {
+                "title": "Reference"
+            },
+            "company": "Company",
+            "applyTime": "Apply Time",
+            "location": "Location",
+            "resume": "Resume",
+            "cover": "Cover",
+            "referenceFile": "Reference File",
+            "jobTitle": "Job Title"
+        }
+    }
+}

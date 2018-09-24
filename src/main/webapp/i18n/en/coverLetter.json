@@ -1,0 +1,22 @@
+
+{
+    "referenceRecordApp": {
+        "coverLetter" : {
+            "home": {
+                "title": "Cover Letters",
+                "createLabel": "Create a new Cover Letter",
+                "createOrEditLabel": "Create or edit a Cover Letter"
+            },
+            "created": "A new Cover Letter is created with identifier {{ param }}",
+            "updated": "A Cover Letter is updated with identifier {{ param }}",
+            "deleted": "A Cover Letter is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Cover Letter {{ id }}?"
+            },
+            "detail": {
+                "title": "Cover Letter"
+            },
+            "name": "Name"
+        }
+    }
+}

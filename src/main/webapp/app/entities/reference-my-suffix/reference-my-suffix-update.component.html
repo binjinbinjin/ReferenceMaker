@@ -1,0 +1,87 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-reference-my-suffix-heading" jhiTranslate="referenceRecordApp.reference.home.createOrEditLabel">Create or edit a Reference</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!reference.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="reference.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="referenceRecordApp.reference.company" for="field_company">Company</label>
+                    <input type="text" class="form-control" name="company" id="field_company"
+                        [(ngModel)]="reference.company" required/>
+                    <div [hidden]="!(editForm.controls.company?.dirty && editForm.controls.company?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.company?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="referenceRecordApp.reference.applyTime" for="field_applyTime">Apply Time</label>
+                    <div class="d-flex">
+                        <input id="field_applyTime" type="datetime-local" class="form-control" name="applyTime" [(ngModel)]="applyTime"
+                        required/>
+                    </div>
+                    <div [hidden]="!(editForm.controls.applyTime?.dirty && editForm.controls.applyTime?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.applyTime?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.applyTime?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="referenceRecordApp.reference.location" for="field_location">Location</label>
+                    <select class="form-control" id="field_location" name="location" [(ngModel)]="reference.locationId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="locationOption.id" *ngFor="let locationOption of locations; trackBy: trackLocationById">{{locationOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="referenceRecordApp.reference.resume" for="field_resume">Resume</label>
+                    <select class="form-control" id="field_resume" name="resume" [(ngModel)]="reference.resumeId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="resumeOption.id" *ngFor="let resumeOption of resumes; trackBy: trackResumeById">{{resumeOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="referenceRecordApp.reference.cover" for="field_cover">Cover</label>
+                    <select class="form-control" id="field_cover" name="cover" [(ngModel)]="reference.coverId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="coverLetterOption.id" *ngFor="let coverLetterOption of coverletters; trackBy: trackCoverLetterById">{{coverLetterOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="referenceRecordApp.reference.referenceFile" for="field_referenceFile">Reference File</label>
+                    <select class="form-control" id="field_referenceFile" name="referenceFile" [(ngModel)]="reference.referenceFileId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="referenceFileOption.id" *ngFor="let referenceFileOption of referencefiles; trackBy: trackReferenceFileById">{{referenceFileOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="referenceRecordApp.reference.jobTitle" for="field_jobTitle">Job Title</label>
+                    <select class="form-control" id="field_jobTitle" name="jobTitle" [(ngModel)]="reference.jobTitleId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="jobTitleOption.id" *ngFor="let jobTitleOption of jobtitles; trackBy: trackJobTitleById">{{jobTitleOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
