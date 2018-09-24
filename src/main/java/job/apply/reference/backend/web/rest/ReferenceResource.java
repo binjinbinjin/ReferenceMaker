@@ -47,6 +47,26 @@ public class ReferenceResource {
      * @return the ResponseEntity with status 201 (Created) and with body the new referenceDTO, or with status 400 (Bad Request) if the reference has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
+    @PostMapping("/references/unrestricted")
+    @Timed
+    public ResponseEntity<ReferenceDTO> createReferenceWithoutRestriction(@Valid @RequestBody ReferenceDTO referenceDTO) throws URISyntaxException {
+        log.debug("REST request to save Reference : {}", referenceDTO);
+        if (referenceDTO.getId() != null) {
+            throw new BadRequestAlertException("A new reference cannot already have an ID", ENTITY_NAME, "idexists");
+        }
+        ReferenceDTO result = this.referenceService.saveWithOutRestriction(referenceDTO);
+        return ResponseEntity.created(new URI("/api/references/" + result.getId()))
+            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+            .body(result);
+    }
+
+    /**
+     * POST  /references : Create a new reference.
+     *
+     * @param referenceDTO the referenceDTO to create
+     * @return the ResponseEntity with status 201 (Created) and with body the new referenceDTO, or with status 400 (Bad Request) if the reference has already an ID
+     * @throws URISyntaxException if the Location URI syntax is incorrect
+     */
     @PostMapping("/references")
     @Timed
     public ResponseEntity<ReferenceDTO> createReference(@Valid @RequestBody ReferenceDTO referenceDTO) throws URISyntaxException {

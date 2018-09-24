@@ -12,4 +12,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ReferenceFileRepository extends JpaRepository<ReferenceFile, Long> {
 
+    public boolean existsReferenceFileByFile(String name);
+
+    public ReferenceFile getReferenceFileByFile(String name);
 }

@@ -49,6 +49,30 @@ public class JobTitleServiceImpl implements JobTitleService {
     }
 
     /**
+     * Check existence of a Job title
+     *
+     * @param name@return true iff exist a title with input name
+     */
+    @Override
+    public boolean hasJobTitle(String name) {
+        return this.jobTitleRepository.existsJobTitleByJobTitle(name);
+    }
+
+    /**
+     * Get the job title form database, or create a new job title if not exist.
+     *
+     * @param name@return JobTitle
+     */
+    @Override
+    public JobTitle getOrCreate(String name) {
+        JobTitle jobTitle = this.jobTitleRepository.getJobTitleByJobTitle(name);
+        if (jobTitle != null) return jobTitle;
+        jobTitle = new JobTitle();
+        jobTitle.setJobTitle(name);
+        return this.jobTitleRepository.save(jobTitle);
+    }
+
+    /**
      * Get all the jobTitles.
      *
      * @return the list of entities

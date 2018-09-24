@@ -1,5 +1,6 @@
 package job.apply.reference.backend.service;
 
+import job.apply.reference.backend.domain.ReferenceFile;
 import job.apply.reference.backend.service.dto.ReferenceFileDTO;
 
 import java.util.List;
@@ -17,6 +18,22 @@ public interface ReferenceFileService {
      * @return the persisted entity
      */
     ReferenceFileDTO save(ReferenceFileDTO referenceFileDTO);
+
+    /**
+     * Check existence of a file
+     *
+     * @param String name of file
+     * @return true iff exist a file with input name
+     */
+    boolean hasFile(String name);
+
+    /**
+     * Get the name of ReferenceFile form database, or create a new name for reference file if not exist.
+     *
+     * @param String name
+     * @return ReferenceFile
+     */
+    ReferenceFile getOrCreate(String name);
 
     /**
      * Get all the referenceFiles.

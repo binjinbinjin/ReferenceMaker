@@ -1,5 +1,7 @@
 package job.apply.reference.backend.service;
 
+import job.apply.reference.backend.domain.CoverLetter;
+import job.apply.reference.backend.domain.Location;
 import job.apply.reference.backend.service.dto.CoverLetterDTO;
 
 import java.util.List;
@@ -17,6 +19,22 @@ public interface CoverLetterService {
      * @return the persisted entity
      */
     CoverLetterDTO save(CoverLetterDTO coverLetterDTO);
+
+    /**
+     * Check existence of a cover letter
+     *
+     * @param String name of cover letter
+     * @return true iff exist a cover letter with input name
+     */
+    boolean hasCoverLetter(String name);
+
+    /**
+     * Get the cover letter form database, or create a new cover letter if not exist.
+     *
+     * @param String name
+     * @return CoverLetter
+     */
+    CoverLetter getOrCreate(String name);
 
     /**
      * Get all the coverLetters.

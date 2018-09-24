@@ -12,4 +12,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface LocationRepository extends JpaRepository<Location, Long> {
 
+    public boolean existsLocationByLocation(String name);
+
+    public Location getLocationByLocation(String name);
 }

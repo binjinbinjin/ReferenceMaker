@@ -12,4 +12,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CoverLetterRepository extends JpaRepository<CoverLetter, Long> {
 
+    public boolean existsCoverLetterByName(String name);
+
+    public CoverLetter getCoverLetterByName(String name);
 }

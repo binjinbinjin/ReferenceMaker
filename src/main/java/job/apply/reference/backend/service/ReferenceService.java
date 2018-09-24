@@ -21,6 +21,14 @@ public interface ReferenceService {
     ReferenceDTO save(ReferenceDTO referenceDTO);
 
     /**
+     * Save a reference.
+     *
+     * @param referenceDTO the entity to save
+     * @return the persisted entity
+     */
+    ReferenceDTO saveWithOutRestriction(ReferenceDTO referenceDTO);
+
+    /**
      * Get all the references.
      *
      * @param pageable the pagination information

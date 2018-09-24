@@ -49,6 +49,30 @@ public class LocationServiceImpl implements LocationService {
     }
 
     /**
+     * Check existence of a location
+     *
+     * @param name@return true iff exist a location with input name
+     */
+    @Override
+    public boolean hasLocation(String name) {
+        return this.locationRepository.existsLocationByLocation(name);
+    }
+
+    /**
+     * Get the location form database, or create a new location if not exist.
+     *
+     * @param name@return Location
+     */
+    @Override
+    public Location getOrCreate(String name) {
+        Location location = this.locationRepository.getLocationByLocation(name);
+        if (location != null) return location;
+        location = new Location();
+        location.setLocation(name);
+        return this.locationRepository.save(location);
+    }
+
+    /**
      * Get all the locations.
      *
      * @return the list of entities

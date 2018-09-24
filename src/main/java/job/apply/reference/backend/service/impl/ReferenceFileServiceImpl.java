@@ -49,6 +49,30 @@ public class ReferenceFileServiceImpl implements ReferenceFileService {
     }
 
     /**
+     * Check existence of a file
+     *
+     * @param name@return true iff exist a file with input name
+     */
+    @Override
+    public boolean hasFile(String name) {
+        return this.referenceFileRepository.existsReferenceFileByFile(name);
+    }
+
+    /**
+     * Get the name of ReferenceFile form database, or create a new name for reference file if not exist.
+     *
+     * @param name@return ReferenceFile
+     */
+    @Override
+    public ReferenceFile getOrCreate(String name) {
+        ReferenceFile referenceFile = this.referenceFileRepository.getReferenceFileByFile(name);
+        if (referenceFile != null) return referenceFile;
+        referenceFile = new ReferenceFile();
+        referenceFile.setFile(name);
+        return this.referenceFileRepository.save(referenceFile);
+    }
+
+    /**
      * Get all the referenceFiles.
      *
      * @return the list of entities

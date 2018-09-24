@@ -49,6 +49,30 @@ public class ResumeServiceImpl implements ResumeService {
     }
 
     /**
+     * Check existence of a resume
+     *
+     * @param name@return true iff exist a resume with input name
+     */
+    @Override
+    public boolean hasResume(String name) {
+        return this.resumeRepository.existsResumeByName(name);
+    }
+
+    /**
+     * Get the resume form database, or create a new resume if not exist.
+     *
+     * @param name@return Resume
+     */
+    @Override
+    public Resume getOrCreate(String name) {
+        Resume resume = this.resumeRepository.getResumeByName(name);
+        if (resume != null) return resume;
+        resume = new Resume();
+        resume.setName(name);
+        return this.resumeRepository.save(resume);
+    }
+
+    /**
      * Get all the resumes.
      *
      * @return the list of entities

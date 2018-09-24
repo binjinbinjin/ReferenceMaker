@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import sun.tools.asm.Cover;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -46,6 +47,30 @@ public class CoverLetterServiceImpl implements CoverLetterService {
         CoverLetter coverLetter = coverLetterMapper.toEntity(coverLetterDTO);
         coverLetter = coverLetterRepository.save(coverLetter);
         return coverLetterMapper.toDto(coverLetter);
+    }
+
+    /**
+     * Check existence of a cover letter
+     *
+     * @param name@return true iff exist a cover letter with input name
+     */
+    @Override
+    public boolean hasCoverLetter(String name) {
+        return this.coverLetterRepository.existsCoverLetterByName(name);
+    }
+
+    /**
+     * Get the cover letter form database, or create a new cover letter if not exist.
+     *
+     * @param name@return CoverLetter
+     */
+    @Override
+    public CoverLetter getOrCreate(String name) {
+        CoverLetter coverLetter = this.coverLetterRepository.getCoverLetterByName(name);
+        if (coverLetter != null) return coverLetter;
+        coverLetter = new CoverLetter();
+        coverLetter.setName(name);
+        return this.coverLetterRepository.save(coverLetter);
     }
 
     /**

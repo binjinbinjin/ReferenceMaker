@@ -1,6 +1,7 @@
 package job.apply.reference.backend.service.impl;
 
-import job.apply.reference.backend.service.ReferenceService;
+import job.apply.reference.backend.domain.ReferenceFile;
+import job.apply.reference.backend.service.*;
 import job.apply.reference.backend.domain.Reference;
 import job.apply.reference.backend.repository.ReferenceRepository;
 import job.apply.reference.backend.service.dto.ReferenceDTO;
@@ -13,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
 import java.util.Optional;
 
 /**
@@ -28,9 +30,30 @@ public class ReferenceServiceImpl implements ReferenceService {
 
     private final ReferenceMapper referenceMapper;
 
-    public ReferenceServiceImpl(ReferenceRepository referenceRepository, ReferenceMapper referenceMapper) {
+    private final CoverLetterService coverLetterService;
+
+    private final JobTitleService jobTitleService;
+
+    private final LocationService locationService;
+
+    private final ReferenceFileService referenceFileService;
+
+    private final ResumeService resumeService;
+
+    public ReferenceServiceImpl(ReferenceRepository referenceRepository,
+                                ReferenceMapper referenceMapper,
+                                CoverLetterService coverLetterService,
+                                JobTitleService jobTitleService,
+                                LocationService locationService,
+                                ReferenceFileService referenceFileServiceService,
+                                ResumeService resumeService) {
         this.referenceRepository = referenceRepository;
         this.referenceMapper = referenceMapper;
+        this.coverLetterService = coverLetterService;
+        this.jobTitleService = jobTitleService;
+        this.locationService = locationService;
+        this.referenceFileService = referenceFileServiceService;
+        this.resumeService = resumeService;
     }
 
     /**
@@ -45,6 +68,24 @@ public class ReferenceServiceImpl implements ReferenceService {
         Reference reference = referenceMapper.toEntity(referenceDTO);
         reference = referenceRepository.save(reference);
         return referenceMapper.toDto(reference);
+    }
+
+    /**
+     * Save a reference.
+     *
+     * @param referenceDTO the entity to save
+     * @return the persisted entity
+     */
+    @Override
+    public ReferenceDTO saveWithOutRestriction(ReferenceDTO referenceDTO) {
+        Reference reference = this.referenceMapper.toEntity(referenceDTO);
+        reference.setCover(this.coverLetterService.getOrCreate(reference.getCover().getName()));
+        reference.setJobTitle(this.jobTitleService.getOrCreate(reference.getJobTitle().getJobTitle()));
+        reference.setLocation(this.locationService.getOrCreate(reference.getLocation().getLocation()));
+        reference.setReferenceFile(this.referenceFileService.getOrCreate(reference.getReferenceFile().getFile()));
+        reference.setResume(this.resumeService.getOrCreate(reference.getResume().getName()));
+        reference.setApplyTime(Instant.now());
+        return this.referenceMapper.toDto(this.referenceRepository.save(reference));
     }
 
     /**

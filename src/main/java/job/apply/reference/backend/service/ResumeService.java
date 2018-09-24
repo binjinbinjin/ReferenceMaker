@@ -1,5 +1,6 @@
 package job.apply.reference.backend.service;
 
+import job.apply.reference.backend.domain.Resume;
 import job.apply.reference.backend.service.dto.ResumeDTO;
 
 import java.util.List;
@@ -17,6 +18,22 @@ public interface ResumeService {
      * @return the persisted entity
      */
     ResumeDTO save(ResumeDTO resumeDTO);
+
+    /**
+     * Check existence of a resume
+     *
+     * @param String name of resume
+     * @return true iff exist a resume with input name
+     */
+    boolean hasResume(String name);
+
+    /**
+     * Get the resume form database, or create a new resume if not exist.
+     *
+     * @param String name of resume
+     * @return Resume
+     */
+    Resume getOrCreate(String name);
 
     /**
      * Get all the resumes.

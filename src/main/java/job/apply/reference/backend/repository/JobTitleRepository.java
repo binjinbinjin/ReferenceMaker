@@ -12,4 +12,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface JobTitleRepository extends JpaRepository<JobTitle, Long> {
 
+    public boolean existsJobTitleByJobTitle(String name);
+
+    public JobTitle getJobTitleByJobTitle(String name);
 }

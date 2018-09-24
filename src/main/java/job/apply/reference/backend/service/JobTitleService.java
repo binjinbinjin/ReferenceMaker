@@ -1,5 +1,7 @@
 package job.apply.reference.backend.service;
 
+import job.apply.reference.backend.domain.JobTitle;
+import job.apply.reference.backend.domain.Location;
 import job.apply.reference.backend.service.dto.JobTitleDTO;
 
 import java.util.List;
@@ -17,6 +19,22 @@ public interface JobTitleService {
      * @return the persisted entity
      */
     JobTitleDTO save(JobTitleDTO jobTitleDTO);
+
+    /**
+     * Check existence of a Job title
+     *
+     * @param String name of job title
+     * @return true iff exist a title with input name
+     */
+    boolean hasJobTitle(String name);
+
+    /**
+     * Get the job title form database, or create a new job title if not exist.
+     *
+     * @param String name
+     * @return JobTitle
+     */
+    JobTitle getOrCreate(String name);
 
     /**
      * Get all the jobTitles.
