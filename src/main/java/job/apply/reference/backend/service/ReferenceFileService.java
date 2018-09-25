@@ -22,7 +22,7 @@ public interface ReferenceFileService {
     /**
      * Check existence of a file
      *
-     * @param String name of file
+     * @param name of file
      * @return true iff exist a file with input name
      */
     boolean hasFile(String name);
@@ -30,7 +30,7 @@ public interface ReferenceFileService {
     /**
      * Get the name of ReferenceFile form database, or create a new name for reference file if not exist.
      *
-     * @param String name
+     * @param name
      * @return ReferenceFile
      */
     ReferenceFile getOrCreate(String name);

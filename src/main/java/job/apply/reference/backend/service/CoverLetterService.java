@@ -23,7 +23,7 @@ public interface CoverLetterService {
     /**
      * Check existence of a cover letter
      *
-     * @param String name of cover letter
+     * @param name of cover letter
      * @return true iff exist a cover letter with input name
      */
     boolean hasCoverLetter(String name);
@@ -31,7 +31,7 @@ public interface CoverLetterService {
     /**
      * Get the cover letter form database, or create a new cover letter if not exist.
      *
-     * @param String name
+     * @param name
      * @return CoverLetter
      */
     CoverLetter getOrCreate(String name);

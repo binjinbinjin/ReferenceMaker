@@ -65,6 +65,7 @@ public class JobTitleServiceImpl implements JobTitleService {
      */
     @Override
     public JobTitle getOrCreate(String name) {
+        if (name.trim().length() == 0) name = " ";
         JobTitle jobTitle = this.jobTitleRepository.getJobTitleByJobTitle(name);
         if (jobTitle != null) return jobTitle;
         jobTitle = new JobTitle();

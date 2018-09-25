@@ -1,10 +1,13 @@
 package job.apply.reference.backend.service;
 
 import job.apply.reference.backend.service.dto.ReferenceDTO;
+import job.apply.reference.backend.domain.Reference;
+
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.time.Instant;
 import java.util.Optional;
 
 /**
@@ -23,10 +26,27 @@ public interface ReferenceService {
     /**
      * Save a reference.
      *
+     * @param reference the entity to save
+     * @return the persisted entity
+     */
+    Reference save(Reference reference);
+
+    /**
+     * Save a reference.
+     *
      * @param referenceDTO the entity to save
      * @return the persisted entity
      */
     ReferenceDTO saveWithOutRestriction(ReferenceDTO referenceDTO);
+
+    /**
+     * Save a reference.
+     *
+     * @param reference the entity to save
+     * @param time time instance
+     * @return the persisted entity
+     */
+    Reference saveWithOutRestriction(Reference reference,  Instant time);
 
     /**
      * Get all the references.

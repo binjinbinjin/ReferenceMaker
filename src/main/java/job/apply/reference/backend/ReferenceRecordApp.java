@@ -1,5 +1,6 @@
 package job.apply.reference.backend;
 
+import job.apply.reference.backend.Utilities.ExcelReader;
 import job.apply.reference.backend.config.ApplicationProperties;
 import job.apply.reference.backend.config.DefaultProfileUtil;
 
@@ -13,6 +14,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.liquibase.LiquibaseProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.context.ApplicationContext;
 import org.springframework.core.env.Environment;
 
 import javax.annotation.PostConstruct;
@@ -62,8 +64,18 @@ public class ReferenceRecordApp {
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(ReferenceRecordApp.class);
         DefaultProfileUtil.addDefaultProfile(app);
-        Environment env = app.run(args).getEnvironment();
+        ApplicationContext context = app.run(args);
+        Environment env = context.getEnvironment();
         logApplicationStartup(env);
+//        ExcelReader reader = (ExcelReader)context.getBean(ExcelReader.class);
+//        try{
+//            reader.read();
+//            System.out.println("Done!!!");
+//        }catch(Exception e) {
+//            e.printStackTrace();
+//        }
+
+
     }
 
     private static void logApplicationStartup(Environment env) {

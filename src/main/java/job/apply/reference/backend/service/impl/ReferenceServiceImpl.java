@@ -73,19 +73,42 @@ public class ReferenceServiceImpl implements ReferenceService {
     /**
      * Save a reference.
      *
+     * @param reference the entity to save
+     * @return the persisted entity
+     */
+    @Override
+    public Reference save(Reference reference) {
+        return this.referenceRepository.save(reference);
+    }
+
+    /**
+     * Save a reference.
+     *
      * @param referenceDTO the entity to save
      * @return the persisted entity
      */
     @Override
     public ReferenceDTO saveWithOutRestriction(ReferenceDTO referenceDTO) {
         Reference reference = this.referenceMapper.toEntity(referenceDTO);
+        return this.referenceMapper.toDto(this.saveWithOutRestriction(reference, null));
+    }
+
+    /**
+     * Save a reference.
+     *
+     * @param reference the entity to save
+     * @param time time instance
+     * @return the persisted entity
+     */
+    @Override
+    public Reference saveWithOutRestriction(Reference reference, Instant time) {
         reference.setCover(this.coverLetterService.getOrCreate(reference.getCover().getName()));
         reference.setJobTitle(this.jobTitleService.getOrCreate(reference.getJobTitle().getJobTitle()));
         reference.setLocation(this.locationService.getOrCreate(reference.getLocation().getLocation()));
         reference.setReferenceFile(this.referenceFileService.getOrCreate(reference.getReferenceFile().getFile()));
         reference.setResume(this.resumeService.getOrCreate(reference.getResume().getName()));
-        reference.setApplyTime(Instant.now());
-        return this.referenceMapper.toDto(this.referenceRepository.save(reference));
+        reference.setApplyTime( time == null ? Instant.now() : time);
+        return this.referenceRepository.save(reference);
     }
 
     /**

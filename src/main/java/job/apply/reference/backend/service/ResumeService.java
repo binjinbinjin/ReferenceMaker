@@ -22,7 +22,7 @@ public interface ResumeService {
     /**
      * Check existence of a resume
      *
-     * @param String name of resume
+     * @param name of resume
      * @return true iff exist a resume with input name
      */
     boolean hasResume(String name);
@@ -30,7 +30,7 @@ public interface ResumeService {
     /**
      * Get the resume form database, or create a new resume if not exist.
      *
-     * @param String name of resume
+     * @param name of resume
      * @return Resume
      */
     Resume getOrCreate(String name);

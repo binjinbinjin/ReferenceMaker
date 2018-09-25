@@ -23,7 +23,7 @@ public interface JobTitleService {
     /**
      * Check existence of a Job title
      *
-     * @param String name of job title
+     * @param name of job title
      * @return true iff exist a title with input name
      */
     boolean hasJobTitle(String name);
@@ -31,7 +31,7 @@ public interface JobTitleService {
     /**
      * Get the job title form database, or create a new job title if not exist.
      *
-     * @param String name
+     * @param name
      * @return JobTitle
      */
     JobTitle getOrCreate(String name);

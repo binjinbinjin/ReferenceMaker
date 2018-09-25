@@ -23,7 +23,7 @@ public interface LocationService {
     /**
      * Check existence of a location
      *
-     * @param String name of location
+     * @param name of location
      * @return true iff exist a location with input name
      */
     boolean hasLocation(String name);
@@ -31,7 +31,7 @@ public interface LocationService {
     /**
      * Get the location form database, or create a new location if not exist.
      *
-     * @param String name
+     * @param name
      * @return Location
      */
     Location getOrCreate(String name);
