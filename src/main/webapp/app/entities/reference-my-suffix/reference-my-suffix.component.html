@@ -14,7 +14,6 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="company"><span jhiTranslate="referenceRecordApp.reference.company">Company</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="applyTime"><span jhiTranslate="referenceRecordApp.reference.applyTime">Apply Time</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="locationId"><span jhiTranslate="referenceRecordApp.reference.location">Location</span> <fa-icon [icon]="'sort'"></fa-icon></th>
@@ -27,9 +26,8 @@
             </thead>
             <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
             <tr *ngFor="let reference of references ;trackBy: trackId">
-                <td><a [routerLink]="['/reference-my-suffix', reference.id, 'view' ]">{{reference.id}}</a></td>
-                <td>{{reference.company}}</td>
-                <td>{{reference.applyTime | date:'medium'}}</td>
+                <td><a [routerLink]="['/reference-my-suffix', reference.id, 'view' ]">{{reference.company}}</a></td>
+                <td><a [routerLink]="['/reference-my-suffix', reference.id, 'view' ]">{{reference.applyTime | date:'medium'}}</a></td>
                 <td>
                     <div *ngIf="reference.locationId">
                         <a [routerLink]="['../location-my-suffix', reference.locationId , 'view' ]" >{{reference.location}}</a>
