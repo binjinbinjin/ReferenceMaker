@@ -32,27 +32,27 @@
                 <td>{{reference.applyTime | date:'medium'}}</td>
                 <td>
                     <div *ngIf="reference.locationId">
-                        <a [routerLink]="['../location-my-suffix', reference.locationId , 'view' ]" >{{reference.locationId}}</a>
+                        <a [routerLink]="['../location-my-suffix', reference.locationId , 'view' ]" >{{reference.location}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="reference.resumeId">
-                        <a [routerLink]="['../resume-my-suffix', reference.resumeId , 'view' ]" >{{reference.resumeId}}</a>
+                        <a [routerLink]="['../resume-my-suffix', reference.resumeId , 'view' ]" >{{reference.resume}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="reference.coverId">
-                        <a [routerLink]="['../cover-letter-my-suffix', reference.coverId , 'view' ]" >{{reference.coverId}}</a>
+                        <a [routerLink]="['../cover-letter-my-suffix', reference.coverId , 'view' ]" >{{reference.cover}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="reference.referenceFileId">
-                        <a [routerLink]="['../reference-file-my-suffix', reference.referenceFileId , 'view' ]" >{{reference.referenceFileId}}</a>
+                        <a [routerLink]="['../reference-file-my-suffix', reference.referenceFileId , 'view' ]" >{{reference.referenceFile}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="reference.jobTitleId">
-                        <a [routerLink]="['../job-title-my-suffix', reference.jobTitleId , 'view' ]" >{{reference.jobTitleId}}</a>
+                        <a [routerLink]="['../job-title-my-suffix', reference.jobTitleId , 'view' ]" >{{reference.jobTitle}}</a>
                     </div>
                 </td>
                 <td class="text-right">

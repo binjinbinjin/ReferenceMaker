@@ -122,7 +122,7 @@ public class ReferenceServiceImpl implements ReferenceService {
     public Page<ReferenceDTO> findAll(Pageable pageable) {
         log.debug("Request to get all References");
         return referenceRepository.findAll(pageable)
-            .map(referenceMapper::toDto);
+            .map(ReferenceDTO::setReferenceValue);
     }
 
 
@@ -151,3 +151,4 @@ public class ReferenceServiceImpl implements ReferenceService {
         referenceRepository.deleteById(id);
     }
 }
+
