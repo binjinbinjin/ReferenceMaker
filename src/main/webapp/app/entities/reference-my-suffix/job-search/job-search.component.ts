@@ -30,11 +30,11 @@ export class JobSearchComponent implements OnInit {
   }
 
   private subscribeToSaveResponse(result: Observable<HttpResponse<IReferenceMySuffix>>) {
-    result.subscribe((res: HttpResponse<IReferenceMySuffix>) => this.createReferencesuccessfully(), (res: HttpErrorResponse) => this.createReferenceunsuccessfully(res));
+    result.toPromise().then((res: HttpResponse<IReferenceMySuffix>) => this.createReferencesuccessfully(res)).catch((res: HttpErrorResponse) => this.createReferenceunsuccessfully(res));
+    // result.subscribe((res: HttpResponse<IReferenceMySuffix>) => this.createReferencesuccessfully(res), (res: HttpErrorResponse) => this.createReferenceunsuccessfully(res));
   }
 
-  createReferencesuccessfully() {
-
+  createReferencesuccessfully(res: HttpResponse<IReferenceMySuffix>) {
   }
   createReferenceunsuccessfully(res: any) {
     alert('Faile');

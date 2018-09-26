@@ -99,6 +99,14 @@ export class ReferenceMySuffixComponent implements OnInit, OnDestroy {
         this.references = [];
         this.searchReferences = [];
         this.allReferences = [];
+        if (this.allReferencesSubscribe) {
+            this.allReferencesSubscribe.unsubscribe();
+            this.allReferencesSubscribe = null;
+        }
+        if (this.searchReferenceSubscribe) {
+            this.searchReferenceSubscribe.unsubscribe();
+            this.searchReferenceSubscribe = null;
+        }
     }
 
     loadPage(page) {
@@ -141,10 +149,6 @@ export class ReferenceMySuffixComponent implements OnInit, OnDestroy {
             this.allReferences.push(data[i]);
         }
         this.references = this.allReferences;
-        if (this.searchReferenceSubscribe) {
-            this.searchReferenceSubscribe.unsubscribe();
-            this.searchReferenceSubscribe = null;
-        }
     }
 
     private paginateSearchReferences(data: IReferenceMySuffix[], headers: HttpHeaders) {
@@ -154,10 +158,7 @@ export class ReferenceMySuffixComponent implements OnInit, OnDestroy {
             this.searchReferences.push(data[i]);
         }
         this.references = this.searchReferences;
-        if (this.allReferencesSubscribe) {
-            this.allReferencesSubscribe.unsubscribe();
-            this.allReferencesSubscribe = null;
-        }
+
     }
 
     private onError(errorMessage: string) {

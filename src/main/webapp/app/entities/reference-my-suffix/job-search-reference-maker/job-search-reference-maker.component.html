@@ -122,6 +122,19 @@
   </section>
 
   <section class="result">
+
+    <div class="nameOfReferenceFile">
+      <h5>LinkedIn</h5>
+      <p>https://www.linkedin.com/in/jinbin-liu-1bab54131/</p>
+    
+      <br>
+    
+      <div class="createReference">
+        <button *ngIf="form.valid" class="btn btn-primary" (click)="creteNewReference(form)">Create Reference</button>
+      </div>
+      <br>
+    </div>
+
     <div class="nameOfReferenceFile">
       <h5>Reference File</h5>
       <p>{{referencFile}}</p>
