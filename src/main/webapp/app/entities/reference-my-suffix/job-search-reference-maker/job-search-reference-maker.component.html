@@ -1,4 +1,6 @@
-<div class="container">
+<div>
+
+  <h2>Reference Maker</h2>
 
   <section class="questionnaire">
     <form #form="ngForm" (ngSubmit)="create(form)">
@@ -125,7 +127,7 @@
       <p>{{referencFile}}</p>
 
       <br>
-      
+
       <div class="createReference">
         <button *ngIf="form.valid" class="btn btn-primary" (click)="creteNewReference(form)">Create Reference</button>
       </div>

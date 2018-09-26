@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
@@ -14,6 +14,7 @@ import { ReferenceMySuffixService } from './reference-my-suffix.service';
     templateUrl: './reference-my-suffix.component.html'
 })
 export class ReferenceMySuffixComponent implements OnInit, OnDestroy {
+    @Input('showReference') showReference: boolean;
     references: IReferenceMySuffix[];
     allReferencesSubscribe: Subscription;
     searchReferenceSubscribe: Subscription;
@@ -36,6 +37,7 @@ export class ReferenceMySuffixComponent implements OnInit, OnDestroy {
         private parseLinks: JhiParseLinks,
         private principal: Principal
     ) {
+        this.showReference = true;
         this.references = [];
         this.searchReferences = [];
         this.allReferences = [];
@@ -49,7 +51,7 @@ export class ReferenceMySuffixComponent implements OnInit, OnDestroy {
     }
 
     searchCompany(search: boolean, value: string) {
-        if (search && value.trim().length > 1 ) {
+        if (search && value.trim().length > 0 ) {
             this.resetAll();
             this.loadSearch(value);
         } else {
@@ -71,6 +73,10 @@ export class ReferenceMySuffixComponent implements OnInit, OnDestroy {
     }
 
     loadAll() {
+        if (!this.showReference) {
+            this.references = [];
+            return;
+        }
         this.allReferencesSubscribe = this.referenceService
             .query({
                 page: this.page,

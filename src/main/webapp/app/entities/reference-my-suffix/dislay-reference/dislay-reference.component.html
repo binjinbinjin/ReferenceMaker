@@ -41,27 +41,27 @@
           <td><a [routerLink]="['/reference-my-suffix', reference.id, 'view' ]">{{reference.applyTime | date:'medium'}}</a></td>
           <td>
             <div *ngIf="reference.locationId">
-              <a [routerLink]="['../location-my-suffix', reference.locationId , 'view' ]">{{reference.location}}</a>
+              <a [routerLink]="['/location-my-suffix', reference.locationId , 'view' ]">{{reference.location}}</a>
             </div>
           </td>
           <td>
             <div *ngIf="reference.resumeId">
-              <a [routerLink]="['../resume-my-suffix', reference.resumeId , 'view' ]">{{reference.resume}}</a>
+              <a [routerLink]="['/resume-my-suffix', reference.resumeId , 'view' ]">{{reference.resume}}</a>
             </div>
           </td>
           <td>
             <div *ngIf="reference.coverId">
-              <a [routerLink]="['../cover-letter-my-suffix', reference.coverId , 'view' ]">{{reference.cover}}</a>
+              <a [routerLink]="['/cover-letter-my-suffix', reference.coverId , 'view' ]">{{reference.cover}}</a>
             </div>
           </td>
           <td>
             <div *ngIf="reference.referenceFileId">
-              <a [routerLink]="['../reference-file-my-suffix', reference.referenceFileId , 'view' ]">{{reference.referenceFile}}</a>
+              <a [routerLink]="['/reference-file-my-suffix', reference.referenceFileId , 'view' ]">{{reference.referenceFile}}</a>
             </div>
           </td>
           <td>
             <div *ngIf="reference.jobTitleId">
-              <a [routerLink]="['../job-title-my-suffix', reference.jobTitleId , 'view' ]">{{reference.jobTitle}}</a>
+              <a [routerLink]="['/job-title-my-suffix', reference.jobTitleId , 'view' ]">{{reference.jobTitle}}</a>
             </div>
           </td>
           <td class="text-right">

@@ -176,7 +176,7 @@ public class ReferenceServiceImpl implements ReferenceService {
     public Optional<ReferenceDTO> findOne(Long id) {
         log.debug("Request to get Reference : {}", id);
         return referenceRepository.findById(id)
-            .map(referenceMapper::toDto);
+            .map(ReferenceDTO::setReferenceValue);
     }
 
     /**

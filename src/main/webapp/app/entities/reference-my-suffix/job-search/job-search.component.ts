@@ -14,8 +14,11 @@ import { IReferenceMySuffix } from 'app/shared/model/reference-my-suffix.model';
 export class JobSearchComponent implements OnInit {
 
   applyTime: string;
+  search: boolean;
 
-  constructor(private referenceService: ReferenceMySuffixService) { }
+  constructor(private referenceService: ReferenceMySuffixService) {
+    this.search = false;
+  }
 
   ngOnInit() {
   }

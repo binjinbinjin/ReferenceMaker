@@ -1,3 +1,25 @@
-<div>
+<div class="container">
+
+  <br>
+  
+  <div class="clearButton">
+    <button *ngIf="!search" class="btn btn-primary" (click)="search = true">Search</button>
+  </div>
+  <div *ngIf="search" class="clearButton">
+    <button  class="btn btn-primary" (click)="search = false">Close Search</button>
+    <br>
+    <br>
+  </div>
+
+  <jhi-reference-my-suffix *ngIf="search" [showReference]="false"></jhi-reference-my-suffix>
+
+  <div class="clearButton">
+    <br>
+    
+    <button *ngIf="search" class="btn btn-primary" (click)="search = false">Close Search</button>
+    
+    <br>
+
+  </div>
   <job-search-reference-maker (createReference)="save($event)"></job-search-reference-maker>
 </div>
