@@ -78,6 +78,10 @@ export class ReferenceMySuffixComponent implements OnInit, OnDestroy {
         this.eventManager.destroy(this.eventSubscriber);
     }
 
+    trackId(index: number, item: IReferenceMySuffix) {
+        return item.id;
+    }
+
     registerChangeInReferences() {
         this.eventSubscriber = this.eventManager.subscribe('referenceListModification', response => this.reset());
     }

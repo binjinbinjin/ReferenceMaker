@@ -8,7 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class DislayReferenceComponent implements OnInit {
 
-  @Input('references')references: IReferenceMySuffix[];
+  @Input('references') references: IReferenceMySuffix[];
   @Input('links')links: any;
   @Input('page') page: any;
   @Input('predicate')predicate: any;
@@ -16,11 +16,14 @@ export class DislayReferenceComponent implements OnInit {
   @Output('flip') flip: EventEmitter<number>;
   @Output('loading') loading: EventEmitter<boolean>;
 
-  constructor() { }
+  constructor() {
+    this.flip = new EventEmitter();
+    this.loading = new EventEmitter();
+    this.page = 0;
+   }
 
   ngOnInit() {
-    this.references = [];
-    this.page = 0;
+
   }
 
   reset() {
