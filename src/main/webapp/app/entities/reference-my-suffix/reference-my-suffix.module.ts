@@ -14,6 +14,8 @@ import {
 } from './';
 import { CompanySearchComponent } from './company-search/company-search.component';
 import { DislayReferenceComponent } from './dislay-reference/dislay-reference.component';
+import { JobSearchComponent } from './job-search/job-search.component';
+import { JobSearchReferenceMakerComponent } from './job-search-reference-maker/job-search-reference-maker.component';
 
 const ENTITY_STATES = [...referenceRoute, ...referencePopupRoute];
 
@@ -27,13 +29,17 @@ const ENTITY_STATES = [...referenceRoute, ...referencePopupRoute];
         ReferenceMySuffixDeletePopupComponent,
         CompanySearchComponent,
         DislayReferenceComponent,
+        JobSearchComponent,
+        JobSearchReferenceMakerComponent,
 
     ],
     entryComponents: [
         ReferenceMySuffixComponent,
         ReferenceMySuffixUpdateComponent,
         ReferenceMySuffixDeleteDialogComponent,
-        ReferenceMySuffixDeletePopupComponent
+        ReferenceMySuffixDeletePopupComponent,
+        JobSearchReferenceMakerComponent,
+        JobSearchComponent
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

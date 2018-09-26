@@ -1,0 +1,161 @@
+<div class="container">
+
+  <section class="questionnaire">
+    <form #form="ngForm" (ngSubmit)="create(form)">
+
+      <div class="form-group">
+        <label for="company">Company</label>
+        <input class="form-control" type="text" id="company" name="company" ngModel #company="ngModel" required>
+        <div *ngIf="company.dirty && !company.valid" class="alert alert-danger" role="alert">
+          Cannot be empty
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="jobTitle">Job Title</label>
+        <input type="text" class="form-control" id="jobTitle" name="jobTitle" ngModel #jobTitle="ngModel" required>
+        <div *ngIf="jobTitle.dirty && !jobTitle.valid" class="alert alert-danger" role="alert">
+          Cannot be empty
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="selectLocation" name="selectLocation" [ngModel]='true' #selectLocation="ngModel">
+          <label class="form-check-label" for="selectLocation">Select Location</label>
+        </div>
+      </div>
+      
+      <div class="form-group" *ngIf="selectLocation.value">
+        <label for="locationChoice">Select A Location</label>
+        <select class="form-control" [ngModel]="locations[0]" name="locationChoice" #locationChoice="ngModel" id="locationChoice">
+          <option *ngFor="let each of locations" [value]="each">{{each}}</option>
+        </select>
+      </div>
+      
+      <div class="form-group" *ngIf="!selectLocation.value">
+        <label for="locationName">Enter Location</label>
+        <input type="text" class="form-control" id="locationName" name="locationName" ngModel #locationName="ngModel" required>
+        <div *ngIf="locationName.dirty && !locationName.valid" class="alert alert-danger" role="alert">
+          Cannot be empty
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="selectResume" name="selectResume" [ngModel]='true' #selectResume="ngModel">
+          <label class="form-check-label" for="selectResume">Select Resume</label>
+        </div>
+      </div>
+
+      <div class="form-group" *ngIf="selectResume.value">
+        <label for="resumeChoice">Select A Resume</label>
+        <select class="form-control" [ngModel]="resumes[0]" name="resumeChoice" #resumeChoice="ngModel" id="resumeChoice">
+          <option *ngFor="let each of resumes" [value]="each">{{each}}</option>
+        </select>
+      </div>
+
+      <div class="form-group" *ngIf="!selectResume.value">
+        <label for="resumeName">Enter Resume</label>
+        <input type="text" class="form-control" id="resumeName" name="resumeName" ngModel #resumeName="ngModel" required>
+        <div *ngIf="resumeName.dirty && !resumeName.valid" class="alert alert-danger" role="alert">
+          Cannot be empty
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="selectCover" name="selectCover" [ngModel]='true' #selectCover="ngModel">
+          <label for="selectCover">Select Cover</label>
+        </div>
+      </div>
+
+      <div calss="form-group" *ngIf="selectCover.value">
+        <label for="coverChoice"> Select A Cover</label>
+        <select type="text" class="form-control" id="coverChoice" name="coverChoice" [ngModel]="covers[0]" #coverChoice="ngModel">
+          <option *ngFor="let each of covers" [value]="each">{{each}}</option>
+        </select>
+      </div>
+
+      <div class="form-group" *ngIf="!selectCover.value">
+
+        <label for="nameOfCustomCover">Enter a Name for Cover Letter</label>
+        <input type="text" class="form-control" id="nameOfCustomCover" name="nameOfCustomCover" ngModel="custom-cover" #nameOfCustomCover="ngModel"
+          required>
+        <div *ngIf="nameOfCustomCover.dirty && !nameOfCustomCover.valid" class="alert alert-danger" role="alert">
+          Cannot be empty
+        </div>
+
+        <label for="background">Enter Background</label>
+        <textarea type="text" rows="8" class="form-control" id="background" name="background" [(ngModel)]="customBackground" required
+          #background="ngModel">
+          </textarea>
+        <div *ngIf="background.dirty && !background.valid" class="alert alert-danger" role="alert">
+          Cannot be empty
+        </div>
+
+        <label for="qualification">Enter Qualification</label>
+        <textarea type="text" rows="11" class="form-control" id="qualification" name="qualification" [(ngModel)]="customQualification"
+          required #qualification="ngModel">
+          </textarea>
+        <div *ngIf="qualification.dirty && !qualification.valid" class="alert alert-danger" role="alert">
+          Cannot be empty
+        </div>
+
+      </div>
+
+      <br> <br>
+
+      <div>
+        <button *ngIf="form.valid" type="submit" class="btn btn-primary">Create</button>
+      </div>
+
+    </form>
+    <br> <br>
+    <div class="clearButton">
+      <button class="btn btn-primary" (click)="clear()">Clear</button>
+    </div>
+
+    <br>
+  </section>
+
+  <section class="result">
+    <div class="nameOfReferenceFile">
+      <h5>Reference File</h5>
+      <p>{{referencFile}}</p>
+
+      <br>
+      
+      <div class="createReference">
+        <button *ngIf="form.valid" class="btn btn-primary" (click)="creteNewReference(form)">Create Reference</button>
+      </div>
+      <br>
+    </div>
+
+    <div class="nameOfReferenceFile">
+      <h5>Reference Unexcept</h5>
+      <p>{{nameOfReferenceFile}}</p>
+    </div>
+
+    
+
+    <div class="generatedCoverLetter">
+      <h5>Cover Letter:</h5>
+      <main [innerHTML]="displyCoverLetter"></main>
+    </div>
+
+    <br>
+
+    <div class="createReference">
+      <button *ngIf="form.valid" class="btn btn-primary" (click)="creteNewReference(form)">Create Reference</button>
+    </div>
+
+    <br>
+
+    <div class="clearButton">
+      <button class="btn btn-primary" (click)="clear()">Clear</button>
+    </div>
+    <br> <br>
+  </section>
+
+</div>

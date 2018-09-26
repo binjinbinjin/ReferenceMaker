@@ -1,3 +1,4 @@
+import { JobSearchReferenceMakerComponent } from './job-search-reference-maker/job-search-reference-maker.component';
 import { Injectable } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes } from '@angular/router';
@@ -11,6 +12,7 @@ import { ReferenceMySuffixDetailComponent } from './reference-my-suffix-detail.c
 import { ReferenceMySuffixUpdateComponent } from './reference-my-suffix-update.component';
 import { ReferenceMySuffixDeletePopupComponent } from './reference-my-suffix-delete-dialog.component';
 import { IReferenceMySuffix } from 'app/shared/model/reference-my-suffix.model';
+import { JobSearchComponent } from 'app/entities/reference-my-suffix/job-search/job-search.component';
 
 @Injectable({ providedIn: 'root' })
 export class ReferenceMySuffixResolve implements Resolve<IReferenceMySuffix> {
@@ -27,7 +29,7 @@ export class ReferenceMySuffixResolve implements Resolve<IReferenceMySuffix> {
 
 export const referenceRoute: Routes = [
     {
-        path: 'reference-my-suffix',
+        path: 'reference-my-suffix/view-references',
         component: ReferenceMySuffixComponent,
         data: {
             authorities: ['ROLE_USER'],
@@ -70,7 +72,25 @@ export const referenceRoute: Routes = [
             pageTitle: 'referenceRecordApp.reference.home.title'
         },
         canActivate: [UserRouteAccessService]
-    }
+    },
+    {
+        path: 'reference-my-suffix',
+        component: JobSearchComponent,
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'referenceRecordApp.reference.home.title'
+        },
+        canActivate: [UserRouteAccessService]
+    },
+    {
+        path: 'reference-my-suffix/reference-maker',
+        component: JobSearchComponent,
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'referenceRecordApp.reference.home.title'
+        },
+        canActivate: [UserRouteAccessService]
+    },
 ];
 
 export const referencePopupRoute: Routes = [

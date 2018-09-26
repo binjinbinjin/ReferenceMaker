@@ -30,39 +30,47 @@
                 </a>
                 <ul class="dropdown-menu" ngbDropdownMenu>
                     <li>
-                        <a class="dropdown-item" routerLink="reference-my-suffix" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                        <a class="dropdown-item" routerLink="reference-my-suffix/reference-maker" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+                            (click)="collapseNavbar()">
                             <fa-icon [icon]="'asterisk'" [fixedWidth]="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.referenceMySuffix">Reference My Suffix</span>
+                            <span>Reference Maker</span>
                         </a>
                     </li>
                     <li>
+                        <a class="dropdown-item" routerLink="reference-my-suffix/view-references" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon [icon]="'asterisk'" [fixedWidth]="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.referenceMySuffix">Reference</span>
+                        </a>
+                    </li>
+
+                    <li>
                         <a class="dropdown-item" routerLink="job-title-my-suffix" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon [icon]="'asterisk'" [fixedWidth]="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.jobTitleMySuffix">Job Title My Suffix</span>
+                            <span jhiTranslate="global.menu.entities.jobTitleMySuffix">Job Title</span>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item" routerLink="location-my-suffix" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon [icon]="'asterisk'" [fixedWidth]="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.locationMySuffix">Location My Suffix</span>
+                            <span jhiTranslate="global.menu.entities.locationMySuffix">Location</span>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item" routerLink="resume-my-suffix" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon [icon]="'asterisk'" [fixedWidth]="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.resumeMySuffix">Resume My Suffix</span>
+                            <span jhiTranslate="global.menu.entities.resumeMySuffix">Resume</span>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item" routerLink="cover-letter-my-suffix" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon [icon]="'asterisk'" [fixedWidth]="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.coverLetterMySuffix">Cover Letter My Suffix</span>
+                            <span jhiTranslate="global.menu.entities.coverLetterMySuffix">Cover Letter</span>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item" routerLink="reference-file-my-suffix" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon [icon]="'asterisk'" [fixedWidth]="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.referenceFileMySuffix">Reference File My Suffix</span>
+                            <span jhiTranslate="global.menu.entities.referenceFileMySuffix">Reference File</span>
                         </a>
                     </li>
                     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
