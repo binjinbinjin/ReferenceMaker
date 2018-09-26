@@ -65,7 +65,7 @@ public class ReferenceFileServiceImpl implements ReferenceFileService {
      */
     @Override
     public ReferenceFile getOrCreate(String name) {
-        if (name.trim().length() == 0) name = " ";
+        if (name == null || name.trim().length() == 0) name = " ";
         ReferenceFile referenceFile = this.referenceFileRepository.getReferenceFileByFile(name);
         if (referenceFile != null) return referenceFile;
         referenceFile = new ReferenceFile();

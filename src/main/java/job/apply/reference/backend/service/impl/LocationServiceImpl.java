@@ -65,7 +65,7 @@ public class LocationServiceImpl implements LocationService {
      */
     @Override
     public Location getOrCreate(String name) {
-        if (name.trim().length() == 0) name = " ";
+        if (name == null || name.trim().length() == 0) name = " ";
         Location location = this.locationRepository.getLocationByLocation(name);
         if (location != null) return location;
         location = new Location();

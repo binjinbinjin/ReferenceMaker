@@ -27,25 +27,12 @@ export class ReferenceMySuffixUpdateComponent implements OnInit {
     private _reference: IReferenceMySuffix;
     isSaving: boolean;
 
-    locations: ILocationMySuffix[];
-
-    resumes: IResumeMySuffix[];
-
-    coverletters: ICoverLetterMySuffix[];
-
-    referencefiles: IReferenceFileMySuffix[];
-
-    jobtitles: IJobTitleMySuffix[];
     applyTime: string;
 
     constructor(
         private jhiAlertService: JhiAlertService,
         private referenceService: ReferenceMySuffixService,
-        private locationService: LocationMySuffixService,
-        private resumeService: ResumeMySuffixService,
-        private coverLetterService: CoverLetterMySuffixService,
-        private referenceFileService: ReferenceFileMySuffixService,
-        private jobTitleService: JobTitleMySuffixService,
+
         private activatedRoute: ActivatedRoute
     ) {}
 
@@ -54,36 +41,6 @@ export class ReferenceMySuffixUpdateComponent implements OnInit {
         this.activatedRoute.data.subscribe(({ reference }) => {
             this.reference = reference;
         });
-        this.locationService.query().subscribe(
-            (res: HttpResponse<ILocationMySuffix[]>) => {
-                this.locations = res.body;
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
-        this.resumeService.query().subscribe(
-            (res: HttpResponse<IResumeMySuffix[]>) => {
-                this.resumes = res.body;
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
-        this.coverLetterService.query().subscribe(
-            (res: HttpResponse<ICoverLetterMySuffix[]>) => {
-                this.coverletters = res.body;
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
-        this.referenceFileService.query().subscribe(
-            (res: HttpResponse<IReferenceFileMySuffix[]>) => {
-                this.referencefiles = res.body;
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
-        this.jobTitleService.query().subscribe(
-            (res: HttpResponse<IJobTitleMySuffix[]>) => {
-                this.jobtitles = res.body;
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
     }
 
     previousState() {

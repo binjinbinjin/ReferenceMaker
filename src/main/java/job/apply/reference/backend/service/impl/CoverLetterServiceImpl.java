@@ -66,7 +66,7 @@ public class CoverLetterServiceImpl implements CoverLetterService {
      */
     @Override
     public CoverLetter getOrCreate(String name) {
-        if (name.trim().length() == 0) name = " ";
+        if (name == null || name.trim().length() == 0) name = " ";
         CoverLetter coverLetter = this.coverLetterRepository.getCoverLetterByName(name);
         if (coverLetter != null) return coverLetter;
         coverLetter = new CoverLetter();

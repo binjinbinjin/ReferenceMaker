@@ -75,7 +75,7 @@ public class ReferenceResource {
         if (referenceDTO.getId() != null) {
             throw new BadRequestAlertException("A new reference cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        ReferenceDTO result = referenceService.save(referenceDTO);
+        ReferenceDTO result = referenceService.saveWithOutRestriction(referenceDTO);
         return ResponseEntity.created(new URI("/api/references/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -97,7 +97,7 @@ public class ReferenceResource {
         if (referenceDTO.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
-        ReferenceDTO result = referenceService.save(referenceDTO);
+        ReferenceDTO result = referenceService.saveWithOutRestriction(referenceDTO);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, referenceDTO.getId().toString()))
             .body(result);

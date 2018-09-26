@@ -89,6 +89,7 @@ public class ReferenceServiceImpl implements ReferenceService {
         return this.referenceRepository.save(reference);
     }
 
+
     /**
      * Save a reference.
      *
@@ -98,7 +99,14 @@ public class ReferenceServiceImpl implements ReferenceService {
     @Override
     public ReferenceDTO saveWithOutRestriction(ReferenceDTO referenceDTO) {
         Reference reference = this.referenceMapper.toEntity(referenceDTO);
-        return this.referenceMapper.toDto(this.saveWithOutRestriction(reference, null));
+        reference.setCover(this.coverLetterService.getOrCreate(referenceDTO.getCover()));
+        reference.setJobTitle(this.jobTitleService.getOrCreate(referenceDTO.getJobTitle()));
+        reference.setLocation(this.locationService.getOrCreate(referenceDTO.getLocation()));
+        reference.setReferenceFile(this.referenceFileService.getOrCreate(referenceDTO.getReferenceFile()));
+        reference.setResume(this.resumeService.getOrCreate(referenceDTO.getResume()));
+        reference.setApplyTime( reference.getApplyTime() == null ? Instant.now() : reference.getApplyTime());
+        reference = this.referenceRepository.save(reference);
+        return ReferenceDTO.setReferenceValue(reference);
     }
 
     /**

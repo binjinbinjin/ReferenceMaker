@@ -65,7 +65,7 @@ public class ResumeServiceImpl implements ResumeService {
      */
     @Override
     public Resume getOrCreate(String name) {
-        if (name.trim().length() == 0) name = " ";
+        if (name == null || name.trim().length() == 0) name = " ";
         Resume resume = this.resumeRepository.getResumeByName(name);
         if (resume != null) return resume;
         resume = new Resume();
