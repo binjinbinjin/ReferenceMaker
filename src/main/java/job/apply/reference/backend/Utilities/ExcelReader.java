@@ -55,7 +55,7 @@ public class ExcelReader {
                 else if (i == 1) {
                     String dateComponent[] = cellValue.split("/");
                     Calendar calendar = Calendar.getInstance();
-                    calendar.set(Integer.parseInt(dateComponent[2]), Integer.parseInt(dateComponent[0]), Integer.parseInt(dateComponent[1]));
+                    calendar.set(Integer.parseInt(dateComponent[2]), Integer.parseInt(dateComponent[0]) - 1, Integer.parseInt(dateComponent[1]));
                     reference.setApplyTime(calendar.toInstant());
                 }
                 else if (i == 2) {
