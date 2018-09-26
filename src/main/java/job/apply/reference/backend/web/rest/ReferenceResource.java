@@ -17,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -130,6 +131,23 @@ public class ReferenceResource {
         Optional<ReferenceDTO> referenceDTO = referenceService.findOne(id);
         return ResponseUtil.wrapOrNotFound(referenceDTO);
     }
+
+    /**
+     * GET  /references/findCompany?companyName=company : get all the references with matched company name. "company" compnay name
+     *
+     * @param company companyName
+     * @param pageable the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of references in body
+     */
+    @GetMapping("/references/findCompany")
+    @Timed
+    public ResponseEntity<List<ReferenceDTO>> getAllReferencesWithCompanyMatched(@NotNull @RequestParam String company, Pageable pageable) {
+        log.debug("REST request to get a page of References");
+        Page<ReferenceDTO> page = referenceService.findAllWithCompanyContainsAllLetters(company, pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/references");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+
 
     /**
      * DELETE  /references/:id : delete the "id" reference.
