@@ -1,3 +1,19 @@
 <div>
+    <form #form="ngForm" (ngSubmit)="searchCompany(form.valid,search.value)">
+    
+        <div class="form-group">
+            <label for="search">Search</label>
+            <input class="form-control" type="text" id="search" name="search" ngModel #search="ngModel" required>
+        </div>
+    
+        <div>
+            <button *ngIf="form.valid" type="submit" class="btn btn-primary">Search</button>
+        </div>
+
+        <div>
+            <button *ngIf="!form.valid"type="submit" class="btn btn-primary">All Reference</button>
+        </div>
+    
+    </form>
     <jhi-dislay-reference [references]="references" [links]="links" [page]="page" [predicate]="predicate" [reverse]="reverse" (flip)="loadPage($event)" (loading)="reset()"></jhi-dislay-reference>
 </div>

@@ -15,6 +15,10 @@ import { ReferenceMySuffixService } from './reference-my-suffix.service';
 })
 export class ReferenceMySuffixComponent implements OnInit, OnDestroy {
     references: IReferenceMySuffix[];
+    allReferencesSubscribe: Subscription;
+    searchReferenceSubscribe: Subscription;
+    allReferences: IReferenceMySuffix[];
+    searchReferences: IReferenceMySuffix[];
     currentAccount: any;
     eventSubscriber: Subscription;
     itemsPerPage: number;
@@ -33,6 +37,8 @@ export class ReferenceMySuffixComponent implements OnInit, OnDestroy {
         private principal: Principal
     ) {
         this.references = [];
+        this.searchReferences = [];
+        this.allReferences = [];
         this.itemsPerPage = ITEMS_PER_PAGE;
         this.page = 0;
         this.links = {
@@ -42,8 +48,30 @@ export class ReferenceMySuffixComponent implements OnInit, OnDestroy {
         this.reverse = true;
     }
 
+    searchCompany(search: boolean, value: string) {
+        if (search && value.trim().length > 1 ) {
+            this.resetAll();
+            this.loadSearch(value);
+        } else {
+            this.reset();
+        }
+    }
+
+    loadSearch(search: string) {
+        this.searchReferenceSubscribe = this.referenceService
+            .findAllWithCompanyName(search, {
+                page: this.page,
+                size: this.itemsPerPage,
+                sort: this.sort()
+            })
+            .subscribe(
+                (res: HttpResponse<IReferenceMySuffix[]>) => this.paginateSearchReferences(res.body, res.headers),
+                (res: HttpErrorResponse) => this.onError(res.message)
+            );
+    }
+
     loadAll() {
-        this.referenceService
+        this.allReferencesSubscribe = this.referenceService
             .query({
                 page: this.page,
                 size: this.itemsPerPage,
@@ -56,9 +84,15 @@ export class ReferenceMySuffixComponent implements OnInit, OnDestroy {
     }
 
     reset() {
+        this.resetAll();
+        this.loadAll();
+    }
+
+    resetAll() {
         this.page = 0;
         this.references = [];
-        this.loadAll();
+        this.searchReferences = [];
+        this.allReferences = [];
     }
 
     loadPage(page) {
@@ -98,7 +132,25 @@ export class ReferenceMySuffixComponent implements OnInit, OnDestroy {
         this.links = this.parseLinks.parse(headers.get('link'));
         this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
         for (let i = 0; i < data.length; i++) {
-            this.references.push(data[i]);
+            this.allReferences.push(data[i]);
+        }
+        this.references = this.allReferences;
+        if (this.searchReferenceSubscribe) {
+            this.searchReferenceSubscribe.unsubscribe();
+            this.searchReferenceSubscribe = null;
+        }
+    }
+
+    private paginateSearchReferences(data: IReferenceMySuffix[], headers: HttpHeaders) {
+        this.links = this.parseLinks.parse(headers.get('link'));
+        this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
+        for (let i = 0; i < data.length; i++) {
+            this.searchReferences.push(data[i]);
+        }
+        this.references = this.searchReferences;
+        if (this.allReferencesSubscribe) {
+            this.allReferencesSubscribe.unsubscribe();
+            this.allReferencesSubscribe = null;
         }
     }
 

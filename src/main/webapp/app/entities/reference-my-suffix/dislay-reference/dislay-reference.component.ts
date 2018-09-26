@@ -37,6 +37,14 @@ export class DislayReferenceComponent implements OnInit {
     this.flip.emit(this.page);
   }
 
+  sort() {
+    const result = [this.predicate + ',' + (this.reverse ? 'asc' : 'desc')];
+    if (this.predicate !== 'id') {
+      result.push('id');
+    }
+    return result;
+  }
+
   trackId(index: number, item: IReferenceMySuffix) {
     return item.id;
   }

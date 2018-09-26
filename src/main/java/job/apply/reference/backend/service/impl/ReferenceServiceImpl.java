@@ -145,16 +145,16 @@ public class ReferenceServiceImpl implements ReferenceService {
         String regex = "";
         for (int i = 0; i < characters.length(); i++) {
             String currentCharacter = characters.substring(i, i + 1);
-            regex += "[";
-            if ((characters.charAt(i) >= this.ASCII_CAPITAL_A && characters.charAt(i) <= this.ASCII_CAPITAL_Z) ||
-                (characters.charAt(i) >= this.ASCII_LOWER_A && characters.charAt(i) <= this.ASCII_LOWER_Z)) {
-                regex += currentCharacter.toLowerCase() + currentCharacter.toLowerCase();
+            if(currentCharacter == " " || currentCharacter == "\t") {
+                regex += "%";
             } else {
-                regex += characters;
+                regex += currentCharacter;
             }
-            regex += "].*";
+            regex += "%";
         }
-        return referenceRepository.findAllByCompanyMatchesRegex(regex, pageable).map(ReferenceDTO::setReferenceValue);
+        Page<ReferenceDTO> result  = referenceRepository.findByCompanyMatchesRegex(regex, pageable).map(ReferenceDTO::setReferenceValue);
+        this.log.debug("\n\n\nsearch {} : {}", regex, result.getContent());
+        return result;
     }
 
     /**

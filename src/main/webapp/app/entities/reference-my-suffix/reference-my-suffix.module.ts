@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
@@ -17,7 +18,7 @@ import { DislayReferenceComponent } from './dislay-reference/dislay-reference.co
 const ENTITY_STATES = [...referenceRoute, ...referencePopupRoute];
 
 @NgModule({
-    imports: [ReferenceRecordSharedModule, RouterModule.forChild(ENTITY_STATES)],
+    imports: [ReferenceRecordSharedModule, RouterModule.forChild(ENTITY_STATES), FormsModule],
     declarations: [
         ReferenceMySuffixComponent,
         ReferenceMySuffixDetailComponent,
@@ -25,7 +26,8 @@ const ENTITY_STATES = [...referenceRoute, ...referencePopupRoute];
         ReferenceMySuffixDeleteDialogComponent,
         ReferenceMySuffixDeletePopupComponent,
         CompanySearchComponent,
-        DislayReferenceComponent
+        DislayReferenceComponent,
+
     ],
     entryComponents: [
         ReferenceMySuffixComponent,

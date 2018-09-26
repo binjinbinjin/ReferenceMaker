@@ -135,15 +135,15 @@ public class ReferenceResource {
     /**
      * GET  /references/findCompany?companyName=company : get all the references with matched company name. "company" compnay name
      *
-     * @param company companyName
+     * @param companyName companyName
      * @param pageable the pagination information
      * @return the ResponseEntity with status 200 (OK) and the list of references in body
      */
     @GetMapping("/references/findCompany")
     @Timed
-    public ResponseEntity<List<ReferenceDTO>> getAllReferencesWithCompanyMatched(@NotNull @RequestParam String company, Pageable pageable) {
+    public ResponseEntity<List<ReferenceDTO>> getAllReferencesWithCompanyMatched(@NotNull @RequestParam String companyName, Pageable pageable) {
         log.debug("REST request to get a page of References");
-        Page<ReferenceDTO> page = referenceService.findAllWithCompanyContainsAllLetters(company, pageable);
+        Page<ReferenceDTO> page = referenceService.findAllWithCompanyContainsAllLetters(companyName, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/references");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
