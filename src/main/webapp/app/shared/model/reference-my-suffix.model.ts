@@ -34,4 +34,3 @@ export class ReferenceMySuffix implements IReferenceMySuffix {
         public jobTitle?: String
     ) { }
 }
-

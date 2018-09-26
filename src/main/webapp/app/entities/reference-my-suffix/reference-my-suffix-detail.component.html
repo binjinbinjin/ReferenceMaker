@@ -16,31 +16,31 @@
                 <dt><span jhiTranslate="referenceRecordApp.reference.location">Location</span></dt>
                 <dd>
                     <div *ngIf="reference.locationId">
-                        <a [routerLink]="['/location-my-suffix', reference.locationId, 'view']">{{reference.locationId}}</a>
+                        <a [routerLink]="['/location-my-suffix', reference.locationId, 'view']">{{reference.location}}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="referenceRecordApp.reference.resume">Resume</span></dt>
                 <dd>
                     <div *ngIf="reference.resumeId">
-                        <a [routerLink]="['/resume-my-suffix', reference.resumeId, 'view']">{{reference.resumeId}}</a>
+                        <a [routerLink]="['/resume-my-suffix', reference.resumeId, 'view']">{{reference.resume}}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="referenceRecordApp.reference.cover">Cover</span></dt>
                 <dd>
                     <div *ngIf="reference.coverId">
-                        <a [routerLink]="['/cover-letter-my-suffix', reference.coverId, 'view']">{{reference.coverId}}</a>
+                        <a [routerLink]="['/cover-letter-my-suffix', reference.coverId, 'view']">{{reference.cover}}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="referenceRecordApp.reference.referenceFile">Reference File</span></dt>
                 <dd>
                     <div *ngIf="reference.referenceFileId">
-                        <a [routerLink]="['/reference-file-my-suffix', reference.referenceFileId, 'view']">{{reference.referenceFileId}}</a>
+                        <a [routerLink]="['/reference-file-my-suffix', reference.referenceFileId, 'view']">{{reference.referenceFile}}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="referenceRecordApp.reference.jobTitle">Job Title</span></dt>
                 <dd>
                     <div *ngIf="reference.jobTitleId">
-                        <a [routerLink]="['/job-title-my-suffix', reference.jobTitleId, 'view']">{{reference.jobTitleId}}</a>
+                        <a [routerLink]="['/job-title-my-suffix', reference.jobTitleId, 'view']">{{reference.jobTitle}}</a>
                     </div>
                 </dd>
             </dl>

@@ -11,6 +11,8 @@ import {
     referenceRoute,
     referencePopupRoute
 } from './';
+import { CompanySearchComponent } from './company-search/company-search.component';
+import { DislayReferenceComponent } from './dislay-reference/dislay-reference.component';
 
 const ENTITY_STATES = [...referenceRoute, ...referencePopupRoute];
 
@@ -21,7 +23,9 @@ const ENTITY_STATES = [...referenceRoute, ...referencePopupRoute];
         ReferenceMySuffixDetailComponent,
         ReferenceMySuffixUpdateComponent,
         ReferenceMySuffixDeleteDialogComponent,
-        ReferenceMySuffixDeletePopupComponent
+        ReferenceMySuffixDeletePopupComponent,
+        CompanySearchComponent,
+        DislayReferenceComponent
     ],
     entryComponents: [
         ReferenceMySuffixComponent,

@@ -1,12 +1,12 @@
+import { createRequestOption } from 'app/shared/util/request-util';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import * as moment from 'moment';
 import { DATE_FORMAT } from 'app/shared/constants/input.constants';
 import { map } from 'rxjs/operators';
 
 import { SERVER_API_URL } from 'app/app.constants';
-import { createRequestOption } from 'app/shared';
 import { IReferenceMySuffix } from 'app/shared/model/reference-my-suffix.model';
 
 type EntityResponseType = HttpResponse<IReferenceMySuffix>;
@@ -38,10 +38,19 @@ export class ReferenceMySuffixService {
             .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
     }
 
+    findAllWithCompanyName(company: string, req?: any): Observable<EntityArrayResponseType> {
+        const options = createRequestOption({ companyName: company, ...req});
+        return this.getReferences(options, this.resourceUrl + '/findCompany');
+    }
+
     query(req?: any): Observable<EntityArrayResponseType> {
         const options = createRequestOption(req);
+        return this.getReferences(options, this.resourceUrl);
+    }
+
+    getReferences(options: HttpParams, url: string): Observable<EntityArrayResponseType> {
         return this.http
-            .get<IReferenceMySuffix[]>(this.resourceUrl, { params: options, observe: 'response' })
+            .get<IReferenceMySuffix[]>(url, { params: options, observe: 'response' })
             .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
     }
 
