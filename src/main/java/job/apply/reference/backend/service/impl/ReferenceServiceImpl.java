@@ -40,6 +40,14 @@ public class ReferenceServiceImpl implements ReferenceService {
 
     private final ResumeService resumeService;
 
+    private final int ASCII_CAPITAL_A = 65;
+
+    private final int ASCII_CAPITAL_Z = 90;
+
+    private final int ASCII_LOWER_A = 97;
+
+    private final int ASCII_LOWER_Z = 122;
+
     public ReferenceServiceImpl(ReferenceRepository referenceRepository,
                                 ReferenceMapper referenceMapper,
                                 CoverLetterService coverLetterService,
@@ -125,6 +133,29 @@ public class ReferenceServiceImpl implements ReferenceService {
             .map(ReferenceDTO::setReferenceValue);
     }
 
+    /**
+     * Get all the references with company name that contains input characters.
+     *
+     * @param characters the characters
+     * @param pageable   the pagination information
+     * @return the list of entities
+     */
+    @Override
+    public Page<ReferenceDTO> findAllWithCompanyContainsAllLetters(String characters, Pageable pageable) {
+        String regex = "";
+        for (int i = 0; i < characters.length(); i++) {
+            String currentCharacter = characters.substring(i, i + 1);
+            regex += "[";
+            if ((characters.charAt(i) >= this.ASCII_CAPITAL_A && characters.charAt(i) <= this.ASCII_CAPITAL_Z) ||
+                (characters.charAt(i) >= this.ASCII_LOWER_A && characters.charAt(i) <= this.ASCII_LOWER_Z)) {
+                regex += currentCharacter.toLowerCase() + currentCharacter.toLowerCase();
+            } else {
+                regex += characters;
+            }
+            regex += "].*";
+        }
+        return referenceRepository.findAllByCompanyMatchesRegex(regex, pageable).map(ReferenceDTO::setReferenceValue);
+    }
 
     /**
      * Get one reference by id.

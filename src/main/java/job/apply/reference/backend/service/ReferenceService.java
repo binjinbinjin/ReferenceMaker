@@ -56,6 +56,15 @@ public interface ReferenceService {
      */
     Page<ReferenceDTO> findAll(Pageable pageable);
 
+    /**
+     * Get all the references with company name that contains input characters.
+     *
+     * @param characters the characters
+     * @param pageable the pagination information
+     * @return the list of entities
+     */
+    Page<ReferenceDTO> findAllWithCompanyContainsAllLetters(String characters, Pageable pageable);
+
 
     /**
      * Get the "id" reference.
@@ -72,3 +81,4 @@ public interface ReferenceService {
      */
     void delete(Long id);
 }
+
