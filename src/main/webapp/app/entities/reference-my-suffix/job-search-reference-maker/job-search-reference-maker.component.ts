@@ -20,10 +20,14 @@ export class JobSearchReferenceMakerComponent implements OnInit {
   displyCoverLetter: string;
   nameOfReferenceFile: string;
   referencFile: string;
+  skillSet: string;
+  linkedInLink: string;
   @Output('createReference') createReference: EventEmitter<IReferenceMySuffix>;
 
   constructor() {
     this.createReference = new EventEmitter();
+    this.skillSet = 'Angular 6, Spring, Spring Boot, Bootstrap4, JUnit, JHipster, SQL, MySQL, Java, JavaScript (ES6), Typescript, HTML5, CSS3, Rxjs, Restful API, Eclipse, MySQL Workbench, CLI, IntelliJ, VS code, Windows, UNIX/Linux, MAC OS';
+    this.linkedInLink = 'https://www.linkedin.com/in/jinbin-liu-1bab54131/';
   }
 
   ngOnInit() {

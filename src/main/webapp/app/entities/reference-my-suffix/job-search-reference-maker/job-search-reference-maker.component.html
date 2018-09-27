@@ -128,9 +128,9 @@
 
       <div class="oneLine">
         <h5 class="flex-item">LinkedIn</h5>
-        <button class="btn btn-light inline flex-item" type="button" (click)="copyToClipboard('https://www.linkedin.com/in/jinbin-liu-1bab54131/')">Copy To Clipboard</button>
+        <button class="btn btn-light inline flex-item" type="button" (click)="copyToClipboard(linkedInLink)">Copy To Clipboard</button>
       </div>
-      <p>https://www.linkedin.com/in/jinbin-liu-1bab54131/</p>      
+      <p>{{linkedInLink}}</p>      
     </div>
 
     <br>
@@ -183,6 +183,17 @@
 
     <div class="clearButton">
       <button *ngIf="form.valid" class="btn btn-primary" (click)="clear()">Clear</button>
+    </div>
+
+    <br> <br>
+
+    <div class="skillSet">
+    
+      <div class="oneLine">
+        <h5 class="flex-item">Skill Set</h5>
+        <button class="btn btn-light inline flex-item" type="button" (click)="copyToClipboard(skillSet)">Copy To Clipboard</button>
+      </div>
+      <p>{{skillSet}}</p>
     </div>
 
     <br> <br>

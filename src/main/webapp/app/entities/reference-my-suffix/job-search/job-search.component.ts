@@ -1,7 +1,7 @@
 import { ReferenceMySuffixService } from 'app/entities/reference-my-suffix/reference-my-suffix.service';
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
-import { DATE_TIME_FORMAT } from 'app/shared';
+import { DATE_TIME_FORMAT, JhiAlertErrorComponent } from 'app/shared';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IReferenceMySuffix } from 'app/shared/model/reference-my-suffix.model';
@@ -15,9 +15,11 @@ export class JobSearchComponent implements OnInit {
 
   applyTime: string;
   search: boolean;
+  saveSuccessfully: string;
 
   constructor(private referenceService: ReferenceMySuffixService) {
     this.search = false;
+    this.saveSuccessfully = '';
   }
 
   ngOnInit() {
@@ -35,6 +37,8 @@ export class JobSearchComponent implements OnInit {
   }
 
   createReferencesuccessfully(res: HttpResponse<IReferenceMySuffix>) {
+    this.saveSuccessfully = 'Reference have been saved';
+    alert('Saved');
   }
   createReferenceunsuccessfully(res: any) {
     alert('Faile');
