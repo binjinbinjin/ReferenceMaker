@@ -115,28 +115,31 @@
     </form>
     <br> <br>
     <div class="clearButton">
-      <button class="btn btn-primary" (click)="clear()">Clear</button>
+      <button *ngIf="form.valid" class="btn btn-primary" (click)="clear()">Clear</button>
     </div>
 
     <br>
+
   </section>
 
   <section class="result">
 
-    <div class="nameOfReferenceFile">
-      <h5>LinkedIn</h5>
-      <p>https://www.linkedin.com/in/jinbin-liu-1bab54131/</p>
-    
-      <br>
-    
-      <div class="createReference">
-        <button *ngIf="form.valid" class="btn btn-primary" (click)="creteNewReference(form)">Create Reference</button>
+    <div class="linkedInLink">
+
+      <div class="oneLine">
+        <h5 class="flex-item">LinkedIn</h5>
+        <button class="btn btn-light inline flex-item" type="button" (click)="copyToClipboard('https://www.linkedin.com/in/jinbin-liu-1bab54131/')">Copy To Clipboard</button>
       </div>
-      <br>
+      <p>https://www.linkedin.com/in/jinbin-liu-1bab54131/</p>      
     </div>
 
+    <br>
+
     <div class="nameOfReferenceFile">
-      <h5>Reference File</h5>
+      <div class="oneLine">
+        <h5 class="flex-item">Reference File</h5>
+        <button class="btn btn-light inline flex-item" type="button" (click)="copyToClipboard(referencFile)">Copy To Clipboard</button>
+      </div>
       <p>{{referencFile}}</p>
 
       <br>
@@ -144,19 +147,30 @@
       <div class="createReference">
         <button *ngIf="form.valid" class="btn btn-primary" (click)="creteNewReference(form)">Create Reference</button>
       </div>
+
       <br>
+
     </div>
 
     <div class="nameOfReferenceFile">
-      <h5>Reference Unexcept</h5>
+      <div class="oneLine">
+        <h5 class="flex-item">Reference Unexcept</h5>
+        <button class="btn btn-light inline flex-item" type="button" (click)="copyToClipboard(nameOfReferenceFile)">Copy To Clipboard</button>
+      </div>
       <p>{{nameOfReferenceFile}}</p>
+
+      <br>
+
     </div>
 
     
 
     <div class="generatedCoverLetter">
-      <h5>Cover Letter:</h5>
-      <main [innerHTML]="displyCoverLetter"></main>
+      <div class="oneLine">
+        <h5 class="flex-item">Cover Letter:</h5>
+        <button  class="btn btn-light inline flex-item" type="button" (click)="copyToClipboardTag(main)">Copy To Clipboard</button>
+      </div>
+      <main #main [innerHTML]="displyCoverLetter"></main>
     </div>
 
     <br>
@@ -168,9 +182,11 @@
     <br>
 
     <div class="clearButton">
-      <button class="btn btn-primary" (click)="clear()">Clear</button>
+      <button *ngIf="form.valid" class="btn btn-primary" (click)="clear()">Clear</button>
     </div>
+
     <br> <br>
+    
   </section>
 
 </div>

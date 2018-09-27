@@ -1,5 +1,5 @@
 import { ReferenceMySuffix } from './../../../shared/model/reference-my-suffix.model';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ElementRef } from '@angular/core';
 import { coverIntro, coverEnding, coverBody, coverTDDBody, customQualification, customBackground } from './data';
 import { createTokenForReference } from '@angular/compiler/src/identifiers';
 import { IReferenceMySuffix } from 'app/shared/model/reference-my-suffix.model';
@@ -7,6 +7,7 @@ import { IReferenceMySuffix } from 'app/shared/model/reference-my-suffix.model';
 @Component({
   selector: 'job-search-reference-maker',
   templateUrl: './job-search-reference-maker.component.html',
+  styleUrls: ['./job-search-reference-maker.component.css']
 })
 export class JobSearchReferenceMakerComponent implements OnInit {
 
@@ -34,6 +35,26 @@ export class JobSearchReferenceMakerComponent implements OnInit {
     this.customQualification = customQualification;
   }
 
+  copyToClipboard(val: string) {
+    const selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = val;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
+  }
+  copyToClipboardTag(main) {
+    this.copyToClipboard(main.textContent);
+  }
+
+  refreshPage() {
+    window.location.reload();
+  }
   clear() {
     this.ngOnInit();
   }
@@ -124,12 +145,15 @@ export class JobSearchReferenceMakerComponent implements OnInit {
 
   createCoverLetterBodyByCustom(customBackgrounds: string, customQualifications: string) {
     let result = '';
-    result = '<p>' + customBackground.trim() + '</p>';
-    result += '<p>' + 'Here are some highlights of qualification:';
+    result = `
+<p>${customBackground.trim()}</p>
+
+<p>Here are some highlights of qualification:</p> <p>`;
     for (const each of customQualifications.trim().split('\n')) {
-      result = result + '<br>- &nbsp ' + each;
+      result = result + '\n<br>- &nbsp ' + each;
     }
-    result += '</p>';
+    result += `</p>
+    `;
     return result;
   }
 }
