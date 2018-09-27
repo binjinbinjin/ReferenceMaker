@@ -1,8 +1,9 @@
 import { ReferenceMySuffix } from './../../../shared/model/reference-my-suffix.model';
-import { Component, OnInit, Output, EventEmitter, ElementRef } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ElementRef, ViewChild } from '@angular/core';
 import { coverIntro, coverEnding, coverBody, coverTDDBody, customQualification, customBackground } from './data';
 import { createTokenForReference } from '@angular/compiler/src/identifiers';
 import { IReferenceMySuffix } from 'app/shared/model/reference-my-suffix.model';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'job-search-reference-maker',
@@ -22,6 +23,8 @@ export class JobSearchReferenceMakerComponent implements OnInit {
   referencFile: string;
   skillSet: string;
   linkedInLink: string;
+  showGenerateContent: boolean;
+  @ViewChild('form') questionnaire: NgForm;
   @Output('createReference') createReference: EventEmitter<IReferenceMySuffix>;
 
   constructor() {
@@ -34,9 +37,19 @@ export class JobSearchReferenceMakerComponent implements OnInit {
     this.displyCoverLetter = ' ';
     this.nameOfReferenceFile = ' ';
     this.referencFile = '';
-
+    this.showGenerateContent = false;
     this.customBackground = customBackground;
     this.customQualification = customQualification;
+    this.formWatcher();
+  }
+
+  scroll(el) {
+    el.scrollIntoView();
+  }
+  formWatcher() {
+    this.questionnaire.valueChanges.subscribe((res: any) => {
+      this.referencFile = this.createReferenceFile(res.jobTitle, res.company);
+    });
   }
 
   copyToClipboard(val: string) {
@@ -59,11 +72,15 @@ export class JobSearchReferenceMakerComponent implements OnInit {
   refreshPage() {
     window.location.reload();
   }
+
   clear() {
-    this.ngOnInit();
+    this.displyCoverLetter = ' ';
+    this.nameOfReferenceFile = ' ';
+    this.showGenerateContent = false;
   }
 
   create(form) {
+    this.showGenerateContent = true;
     const value = form.value;
     this.displyCoverLetter = this.createCoverLetterIntro(value.jobTitle, value.company);
     this.displyCoverLetter += value.selectCover ?
@@ -75,12 +92,12 @@ export class JobSearchReferenceMakerComponent implements OnInit {
         value.resumeChoice : value.resumeName,
       value.selectCover ?
         value.coverChoice : value.nameOfCustomCover);
-    this.referencFile = this.createReferenceFile(value.jobTitle, value.company);
   }
 
   createNameOfReferenceFile(jobTitle: string, companyName: string, resumeName: string, coverName: string): string {
-    let result: string = companyName.trim();
+    let result: string = companyName ? companyName.trim() : ' ';
 
+    jobTitle = jobTitle ? jobTitle : ' ';
     for (const each of jobTitle.trim().split(' ')) {
       result = result + '-' + each;
     }
@@ -89,8 +106,9 @@ export class JobSearchReferenceMakerComponent implements OnInit {
   }
 
   createReferenceFile(jobTitle: string, companyName: string): string {
-    let result: string = companyName.trim();
+    let result: string = companyName ? companyName.trim() : '';
 
+    jobTitle = jobTitle ? jobTitle : '';
     for (const each of jobTitle.trim().split(' ')) {
       result = result + '-' + each;
     }
@@ -125,7 +143,7 @@ export class JobSearchReferenceMakerComponent implements OnInit {
       location: value.selectLocation ? value.locationChoice : value.locationName,
       resume: value.selectResume ? value.resumeChoice : value.resumeName,
       cover: value.selectCover ? value.coverChoice : value.nameOfCustomCover,
-      referenceFile: this.createReferenceFile(value.jobTitle, value.company),
+      referenceFile: this.referencFile,
       jobTitle: value.jobTitle };
 
     if (!this.lastCreateReference) {

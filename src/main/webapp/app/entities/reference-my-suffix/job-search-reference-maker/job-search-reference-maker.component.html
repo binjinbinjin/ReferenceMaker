@@ -1,8 +1,9 @@
 <div>
-
+  <button class="btn btn-light" (click)="scroll(skillSetTag)">To Skill Set</button>
+  <br>
   <h2>Reference Maker</h2>
 
-  <section class="questionnaire">
+  <section #questionnaire id="questionnaire">
     <form #form="ngForm" (ngSubmit)="create(form)">
 
       <div class="form-group">
@@ -106,7 +107,7 @@
 
       </div>
 
-      <br> <br>
+      <br>
 
       <div>
         <button *ngIf="form.valid" type="submit" class="btn btn-primary">Create</button>
@@ -114,11 +115,6 @@
 
     </form>
     <br> <br>
-    <div class="clearButton">
-      <button *ngIf="form.valid" class="btn btn-primary" (click)="clear()">Clear</button>
-    </div>
-
-    <br>
 
   </section>
 
@@ -135,24 +131,27 @@
 
     <br>
 
-    <div class="nameOfReferenceFile">
+    <div *ngIf="form.valid && showGenerateContent" class="referenceFile">
       <div class="oneLine">
         <h5 class="flex-item">Reference File</h5>
         <button class="btn btn-light inline flex-item" type="button" (click)="copyToClipboard(referencFile)">Copy To Clipboard</button>
       </div>
-      <p>{{referencFile}}</p>
-
       <br>
 
       <div class="createReference">
-        <button *ngIf="form.valid" class="btn btn-primary" (click)="creteNewReference(form)">Create Reference</button>
+        <form *ngIf="form.valid">
+          <div class="form-group">
+            <input type="text" class="form-control" id="referencFile" name="referencFile" [(ngModel)]="referencFile">
+          </div>
+          <button type="submit" class="btn btn-primary mb-2" (click)="creteNewReference(form)">Create Reference </button>
+        </form>
       </div>
 
       <br>
 
     </div>
 
-    <div class="nameOfReferenceFile">
+    <div *ngIf="form.valid && showGenerateContent" class="nameOfReferenceFile">
       <div class="oneLine">
         <h5 class="flex-item">Reference Unexcept</h5>
         <button class="btn btn-light inline flex-item" type="button" (click)="copyToClipboard(nameOfReferenceFile)">Copy To Clipboard</button>
@@ -165,7 +164,7 @@
 
     
 
-    <div class="generatedCoverLetter">
+    <div *ngIf="form.valid && showGenerateContent" class="generatedCoverLetter">
       <div class="oneLine">
         <h5 class="flex-item">Cover Letter:</h5>
         <button  class="btn btn-light inline flex-item" type="button" (click)="copyToClipboardTag(main)">Copy To Clipboard</button>
@@ -182,12 +181,12 @@
     <br>
 
     <div class="clearButton">
-      <button *ngIf="form.valid" class="btn btn-primary" (click)="clear()">Clear</button>
+      <button *ngIf="form.valid"  class="btn btn-primary" (click)="clear(); scroll(questionnaire)">Clear</button>
+      <button *ngIf="!form.valid" class="btn btn-secondary" (click)="scroll(questionnaire)">To Form</button>
     </div>
-
     <br> <br>
 
-    <div class="skillSet">
+    <div #skillSetTag class="skillSet">
     
       <div class="oneLine">
         <h5 class="flex-item">Skill Set</h5>
