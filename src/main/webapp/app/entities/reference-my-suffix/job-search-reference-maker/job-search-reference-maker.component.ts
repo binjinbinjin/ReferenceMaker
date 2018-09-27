@@ -143,7 +143,7 @@ export class JobSearchReferenceMakerComponent implements OnInit {
   }
 
   recordLastEmmitAndEmmit(newReference: any) {
-    this.lastCreateReference = newReference;
+    this.lastCreateReference = { ... newReference};
     this.createReference.emit(newReference);
   }
 
