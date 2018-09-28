@@ -1,0 +1,159 @@
+<!-- Code form this file is modifies form the original 'ng2-pdf-viewer' code "https://github.com/VadimDez/ng2-pdf-viewer"
+ -->
+<main>
+  <div class="page-content">
+    <form >
+      <!-- <div class="form-group">
+        <label for="pdfSrc"></label>
+        <input class="form-control" 
+          id="pdfSrc" 
+          type="text" 
+          placeholder="Set URL of the PDF file" 
+          [(ngModel)]="pdfSrc" name="pdfSrc">
+      </div> -->
+      <div class="form-group">
+        <label for="file">Select a field</label>
+        <input (change)="onFileSelected($event.target)" 
+          type="file" 
+          id="file" 
+          ngModel 
+          #fileForm="ngModel"
+          name="file">
+      </div>
+
+      <div *ngIf="error" class="alert alert-danger">
+        {{ error.message | json }}
+      </div>
+
+      <div class="form-group">
+        <label style="margin-left: 5px;" for="foriginalSizeForm">Original size</label>
+        <div>
+          <label class="switch">
+            <input id="originalSizeForm" type="checkbox" [(ngModel)]="originalSize" name="originalSizeForm">
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group" *ngIf="!originalSize">
+        <label style="margin-left: 5px;" for="fitToPageForm">Fit to page</label>
+        <div>
+          <label class="switch"> 
+            <input id="fitToPageForm" type="checkbox" [(ngModel)]="fitToPage" name="fitToPageForm">
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label style="margin-left: 5px;" for="renderTextForm">Render text layer</label>
+        <div>
+          <label class="switch">
+            <input id="renderTextForm" type="checkbox" [(ngModel)]="renderText" name="renderTextForm">
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label style="margin-left: 5px;" for="autoresizeForm">Auto resize</label>
+        <div>
+          <label class="switch"> 
+            <input id="autoresizeForm" type="checkbox" [(ngModel)]="autoresize" name="autoresizeForm">
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group form-inline">
+        <label style="margin-right: 5px;" for="showAll">Show all pages</label>
+        <div>
+          <label class="switch">
+            <input id="showAll"type="checkbox" [(ngModel)]="showAll" name="showAllForm">
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <button (click)="incrementZoom(-0.1)" type="button">
+          -
+        </button>
+        
+        <input #zoomForm="ngModel" name="zoom" type="number" placeholder="Zoom" [(ngModel)]="zoom" pattern="-?[0-9]*(\.[0-9]+)?">
+        <div *ngIf="zoomForm.invalid" class="alert alert-danger">Input is not a number!</div>
+
+        <button (click)="incrementZoom(0.1)" type="button">
+          +
+        </button>
+      </div>
+
+      <div *ngIf="showAll" class="form-group">
+        <label style="margin-left: 5px;" for="stickToPage">Stick to page</label>
+        <div>
+          <label class="switch">
+            <input id="stickToPage" type="checkbox" [(ngModel)]="stickToPage" name="stickToPageForm">
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </div>
+
+      <div *ngIf="stickToPage && showAll || !showAll" class="form-group form-inline">
+
+        <input #pageNumber="ngModel" name="pageNumberForm" type="number" placeholder="Page" [(ngModel)]="page">
+        <div *ngIf="pageNumber.invalid" class="alter alert-danger">Input is not a number!</div>
+        <span *ngIf="pdf">of {{ pdf.numPages }}</span>
+      </div>
+
+      <div class="form-group form-inline">
+
+      
+        <div class="page-number">
+          <input step="90"name="rotation" #rotations="ngModel" type="number" placeholder="0" [ngModel]="rotation" disabled>
+          <div *ngIf="rotations.invalid" class="alter alert-danger">Input is not a number!</div>
+        </div>
+
+      </div>
+
+      <div *ngIf="showAll"class="form-group form-inline">
+        <label style="margin-left: 5px;" for="isOutlineShown">Show outline</label>
+        <div>
+          <label class="switch"> 
+            <input id="isOutlineShown" type="checkbox" [(ngModel)]="isOutlineShown" name="isOutlineShownForm">
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </div>
+    </form>
+    
+    <div *ngIf="showAll && isOutlineShown">
+      <ul *ngFor="let item of outline" class="outline-list">
+        <li>
+          <a (click)="navigateTo(item.dest)">
+            {{ item.title }}
+          </a>
+
+          <ul *ngFor="let child of item.items">
+            <li>
+              <a (click)="navigateTo(child.dest)">
+                {{ child.title }}
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div *ngIf="pdfSrc != null && !isLoaded && !error && progressData" id="progress">
+      <div class="bg">
+        <div class="bar" [style.width]="progressData.loaded / progressData.total * 100 + '%'"></div>
+      </div>
+      <span>{{ getInt(progressData.loaded / progressData.total * 100) }}%</span>
+    </div>
+
+    <pdf-viewer *ngIf="pdfSrc!= null"[src]="pdfSrc" [(page)]="page" [rotation]="rotation" [original-size]="originalSize" [fit-to-page]="fitToPage"
+      (after-load-complete)="afterLoadComplete($event)" [zoom]="zoom" [show-all]="showAll" [stick-to-page]="stickToPage"
+      [render-text]="renderText" [external-link-target]="'blank'" [autoresize]="autoresize" (error)="onError($event)"
+      (on-progress)="onProgress($event)" (page-rendered)="pageRendered($event)"></pdf-viewer>
+
+  </div>
+</main>

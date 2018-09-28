@@ -1,26 +1,22 @@
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
 import { ReferenceRecordSharedModule } from 'app/shared';
-import {
-    ReferenceMySuffixComponent,
-    ReferenceMySuffixDetailComponent,
-    ReferenceMySuffixUpdateComponent,
-    ReferenceMySuffixDeletePopupComponent,
-    ReferenceMySuffixDeleteDialogComponent,
-    referenceRoute,
-    referencePopupRoute
-} from './';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { ReferenceMySuffixComponent, ReferenceMySuffixDeleteDialogComponent, ReferenceMySuffixDeletePopupComponent, ReferenceMySuffixDetailComponent, ReferenceMySuffixUpdateComponent, referencePopupRoute, referenceRoute } from './';
 import { CompanySearchComponent } from './company-search/company-search.component';
 import { DislayReferenceComponent } from './dislay-reference/dislay-reference.component';
-import { JobSearchComponent } from './job-search/job-search.component';
+import { DisplayPdfComponent } from './display-pdf/display-pdf.component';
 import { JobSearchReferenceMakerComponent } from './job-search-reference-maker/job-search-reference-maker.component';
+import { JobSearchComponent } from './job-search/job-search.component';
 
 const ENTITY_STATES = [...referenceRoute, ...referencePopupRoute];
 
 @NgModule({
-    imports: [ReferenceRecordSharedModule, RouterModule.forChild(ENTITY_STATES), FormsModule],
+    imports: [ReferenceRecordSharedModule,
+        RouterModule.forChild(ENTITY_STATES),
+        FormsModule,
+        PdfViewerModule],
     declarations: [
         ReferenceMySuffixComponent,
         ReferenceMySuffixDetailComponent,
@@ -31,6 +27,7 @@ const ENTITY_STATES = [...referenceRoute, ...referencePopupRoute];
         DislayReferenceComponent,
         JobSearchComponent,
         JobSearchReferenceMakerComponent,
+        DisplayPdfComponent,
 
     ],
     entryComponents: [
