@@ -143,7 +143,10 @@
           <div class="form-group">
             <input type="text" class="form-control" id="referencFile" name="referencFile" [(ngModel)]="referencFile">
           </div>
-          <button type="submit" class="btn btn-primary mb-2" (click)="creteNewReference(form)">Create Reference </button>
+          <div class="oneLine">
+            <button class="btn btn-primary mb-2 inline flex-item" (click)="creteNewReference(form)">Create Reference</button>
+            <button *ngIf="form.valid" class="btn btn-primary mb-2 inline flex-item" (click)="creteNewReference(form); clear(); scroll(questionnaire)">Create Reference And Clear</button>
+          </div>
         </form>
       </div>
 
@@ -155,6 +158,7 @@
       <div class="oneLine">
         <h5 class="flex-item">Reference Unexcept</h5>
         <button class="btn btn-light inline flex-item" type="button" (click)="copyToClipboard(nameOfReferenceFile)">Copy To Clipboard</button>
+        <button class="btn btn-light inline flex-item" type="button" (click)="copyToClipboard(nameOfReferenceFile); clear(); scroll(questionnaire)">Copy To Clipboard And Clear</button>
       </div>
       <p>{{nameOfReferenceFile}}</p>
 
@@ -167,15 +171,18 @@
     <div *ngIf="form.valid && showGenerateContent" class="generatedCoverLetter">
       <div class="oneLine">
         <h5 class="flex-item">Cover Letter:</h5>
-        <button  class="btn btn-light inline flex-item" type="button" (click)="copyToClipboardTag(main)">Copy To Clipboard</button>
+        <button class="btn btn-light inline flex-item" type="button" (click)="copyToClipboardTag(main)">Copy To Clipboard</button>
+        <button class="btn btn-light inline flex-item" (click)="clear(); scroll(questionnaire)">Clear</button>
       </div>
       <main #main [innerHTML]="displyCoverLetter"></main>
     </div>
 
     <br>
 
-    <div class="createReference">
-      <button *ngIf="form.valid" class="btn btn-primary" (click)="creteNewReference(form)">Create Reference</button>
+    <div class="createReference oneLine">
+    <button *ngIf="form.valid" class="btn btn-primary inline flex-item" (click)="creteNewReference(form)">Create Reference</button>
+    <button *ngIf="form.valid" class="btn btn-primary inline flex-item" (click)="creteNewReference(form); clear(); scroll(questionnaire)">Create Reference And Clear</button>
+
     </div>
 
     <br>
