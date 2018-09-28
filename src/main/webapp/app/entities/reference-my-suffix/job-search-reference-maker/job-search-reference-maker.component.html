@@ -150,13 +150,13 @@
         </form>
       </div>
 
-      <br>
+      <br> <br>
 
     </div>
 
     <div *ngIf="form.valid && showGenerateContent" class="nameOfReferenceFile">
       <div class="oneLine">
-        <h5 class="flex-item">Reference Unexcept</h5>
+        <h5 class="flex-item">Reference Unexpected</h5>
         <button class="btn btn-light inline flex-item" type="button" (click)="copyToClipboard(nameOfReferenceFile)">Copy To Clipboard</button>
         <button class="btn btn-light inline flex-item" type="button" (click)="copyToClipboard(nameOfReferenceFile); clear(); scroll(questionnaire)">Copy To Clipboard And Clear</button>
       </div>
