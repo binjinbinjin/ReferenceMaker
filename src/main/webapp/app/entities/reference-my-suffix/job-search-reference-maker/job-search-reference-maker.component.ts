@@ -167,8 +167,7 @@ export class JobSearchReferenceMakerComponent implements OnInit {
 
   createCoverLetterBodyByCustom(customBackgrounds: string, customQualifications: string) {
     let result = '';
-    result = `
-<p>${customBackground.trim()}</p>
+    result = `<p>${customBackground.trim()}</p>
 
 <p>Here are some highlights of qualification:</p> <p>`;
     for (const each of customQualifications.trim().split('\n')) {

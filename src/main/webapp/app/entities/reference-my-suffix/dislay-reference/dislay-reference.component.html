@@ -19,6 +19,9 @@
           <th jhiSortBy="applyTime"><span jhiTranslate="referenceRecordApp.reference.applyTime">Apply Time</span> <fa-icon
               [icon]="'sort'"></fa-icon>
           </th>
+          <th jhiSortBy="jobTitle"><span jhiTranslate="referenceRecordApp.reference.jobTitle">Job Title</span>
+            <fa-icon [icon]="'sort'"></fa-icon>
+          </th>
           <th jhiSortBy="location"><span jhiTranslate="referenceRecordApp.reference.location">Location</span> <fa-icon
               [icon]="'sort'"></fa-icon>
           </th>
@@ -29,9 +32,6 @@
           <th jhiSortBy="referenceFile"><span jhiTranslate="referenceRecordApp.reference.referenceFile">Reference File</span>
             <fa-icon [icon]="'sort'"></fa-icon>
           </th>
-          <th jhiSortBy="jobTitle"><span jhiTranslate="referenceRecordApp.reference.jobTitle">Job Title</span> <fa-icon
-              [icon]="'sort'"></fa-icon>
-          </th>
           <th></th>
         </tr>
       </thead>
@@ -39,6 +39,11 @@
         <tr *ngFor="let reference of references ;trackBy: trackId">
           <td><a [routerLink]="['/reference-my-suffix', reference.id, 'view' ]">{{reference.company}}</a></td>
           <td><a [routerLink]="['/reference-my-suffix', reference.id, 'view' ]">{{reference.applyTime | date:'medium'}}</a></td>
+          <td>
+            <div *ngIf="reference.jobTitleId">
+              <a [routerLink]="['/job-title-my-suffix', reference.jobTitleId , 'view' ]">{{reference.jobTitle}}</a>
+            </div>
+          </td>
           <td>
             <div *ngIf="reference.locationId">
               <a [routerLink]="['/location-my-suffix', reference.locationId , 'view' ]">{{reference.location}}</a>
@@ -56,12 +61,7 @@
           </td>
           <td>
             <div *ngIf="reference.referenceFileId">
-              <a [routerLink]="['/reference-file-my-suffix', reference.referenceFileId , 'view' ]">{{reference.referenceFile}}</a>
-            </div>
-          </td>
-          <td>
-            <div *ngIf="reference.jobTitleId">
-              <a [routerLink]="['/job-title-my-suffix', reference.jobTitleId , 'view' ]">{{reference.jobTitle}}</a>
+              <a [href]="filePath+reference.referenceFile" target="_blank">{{reference.referenceFile}}</a>
             </div>
           </td>
           <td class="text-right">

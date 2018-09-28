@@ -15,6 +15,7 @@ export class DislayReferenceComponent implements OnInit {
   @Input('reverse')reverse: any;
   @Output('flip') flip: EventEmitter<number>;
   @Output('loading') loading: EventEmitter<boolean>;
+  filePath = 'http://127.0.0.1:8887/';
 
   constructor() {
     this.flip = new EventEmitter();
@@ -47,6 +48,21 @@ export class DislayReferenceComponent implements OnInit {
 
   trackId(index: number, item: IReferenceMySuffix) {
     return item.id;
+  }
+
+  openFile(fileName: string) {
+    let path = 'file:///Users/jinbinliu/Desktop/JobSearch/Job%20Reference/';
+    for (const each of fileName) {
+       if (each === ' ') {
+         path += '%20';
+       } else {
+         path += each;
+       }
+    }
+    return path;
+    window.open();
+    const win = window.open('path', '_blank');
+    win.focus();
   }
 
 }

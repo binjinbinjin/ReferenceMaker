@@ -7,6 +7,7 @@ export const coverIntro = (jobTitle: string, companyName: string): string => {
 <p>Dear HR Manager,</p>
 
 <p>I submit my resume for your professional review and I hope you would consider my application for the ${jobTitle} position at ${companyName} that has recently become available. </p>
+
 `;
 };
 
