@@ -19,11 +19,10 @@ export const coverEnding = () => `
 <p>Thank you for your time and consideration. I look forward to speaking with you about this opportunity. </p>
 <br>
 
-<p>Best Regardsbr
-<br>Jin Bin Libr
-<br>(416) 262-859br
-<br>jinbinmail@gmail.com</p>
-    `;
+<p>Best Regards,
+<br>Jin Bin Liu
+<br>(416) 262-8596
+<br>jinbinmail@gmail.com</p>`;
 
 export const defaultCoverBackground = `For a quick review of my background, I have earned my bachelor's degree in computer science with hand on working experience as a freelance Backend Java Developer. To prepares for my career as a developer, I have self-study various frontend and backend technologies and put some of them together to form a full-stack responsive single page web application with technologies including Angular 6, Java, Spring Boot and MySQL. Moreover, I am always in passionate about sharing my thoughts with team members and keeps conversion open. I love to take ownership of my works and enjoy finding the solution to the challenges.`;
 
