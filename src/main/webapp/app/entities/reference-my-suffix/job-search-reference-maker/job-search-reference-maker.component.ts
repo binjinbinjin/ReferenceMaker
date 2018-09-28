@@ -12,7 +12,7 @@ import { NgForm } from '@angular/forms';
 })
 export class JobSearchReferenceMakerComponent implements OnInit {
 
-  resumes: string[] = ['resume-backend', 'resume-developer', 'resume-jin', 'resume'];
+  resumes: string[] = ['resume-backend', 'resume-developer', 'resume-jin', 'resume', 'LinkedIn'];
   covers: string[] = ['cover', 'cover-tdd', ' '];
   locations: string[] = ['Toronto', 'Markham', 'North York', 'Richmond Hill', 'Scarborough', 'Mississauga', 'Thornhill', 'Vaughan'];
   lastCreateReference: IReferenceMySuffix;
