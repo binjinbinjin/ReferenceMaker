@@ -9,6 +9,7 @@ import { DislayReferenceComponent } from './dislay-reference/dislay-reference.co
 import { DisplayPdfComponent } from './display-pdf/display-pdf.component';
 import { JobSearchReferenceMakerComponent } from './job-search-reference-maker/job-search-reference-maker.component';
 import { JobSearchComponent } from './job-search/job-search.component';
+import { ModalAlertComponent } from './modal-alert/modal-alert.component';
 
 const ENTITY_STATES = [...referenceRoute, ...referencePopupRoute];
 
@@ -28,6 +29,7 @@ const ENTITY_STATES = [...referenceRoute, ...referencePopupRoute];
         JobSearchComponent,
         JobSearchReferenceMakerComponent,
         DisplayPdfComponent,
+        ModalAlertComponent,
 
     ],
     entryComponents: [

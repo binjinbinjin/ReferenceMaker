@@ -1,0 +1,13 @@
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 *ngIf="autoClose" class="modal-title" id="modal-basic-title">Close in {{closeTime}} ms ...</h4>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>{{displayText}}</p>
+  </div>
+  <div class="modal-footer">
+  </div>
+</ng-template>
