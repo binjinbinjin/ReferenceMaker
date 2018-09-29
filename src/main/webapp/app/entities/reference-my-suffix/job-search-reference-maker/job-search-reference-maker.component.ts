@@ -4,6 +4,7 @@ import { coverIntro, coverEnding, coverBody, coverTDDBody, customQualification, 
 import { createTokenForReference } from '@angular/compiler/src/identifiers';
 import { IReferenceMySuffix } from 'app/shared/model/reference-my-suffix.model';
 import { NgForm } from '@angular/forms';
+import { ModalAlertComponent } from 'app/entities/reference-my-suffix/modal-alert/modal-alert.component';
 
 @Component({
   selector: 'job-search-reference-maker',
@@ -25,6 +26,7 @@ export class JobSearchReferenceMakerComponent implements OnInit {
   linkedInLink: string;
   showGenerateContent: boolean;
   @ViewChild('form') questionnaire: NgForm;
+  @ViewChild('alert') modal: ModalAlertComponent;
   @Output('createReference') createReference: EventEmitter<IReferenceMySuffix>;
 
   constructor() {
@@ -41,6 +43,10 @@ export class JobSearchReferenceMakerComponent implements OnInit {
     this.customBackground = customBackground;
     this.customQualification = customQualification;
     this.formWatcher();
+  }
+
+  setModalInfoAndOpen(textToDisplay: string= 'click', isAutoClose: boolean = true, setCloseTime: number = 1000) {
+   this.modal.setModalInfoAndOpen(textToDisplay, isAutoClose, setCloseTime);
   }
 
   scroll(el) {
@@ -64,6 +70,7 @@ export class JobSearchReferenceMakerComponent implements OnInit {
     selBox.select();
     document.execCommand('copy');
     document.body.removeChild(selBox);
+    this.setModalInfoAndOpen();
   }
   copyToClipboardTag(main) {
     this.copyToClipboard(main.textContent);

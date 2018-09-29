@@ -1,10 +1,11 @@
 import { ReferenceMySuffixService } from 'app/entities/reference-my-suffix/reference-my-suffix.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import * as moment from 'moment';
 import { DATE_TIME_FORMAT, JhiAlertErrorComponent } from 'app/shared';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IReferenceMySuffix } from 'app/shared/model/reference-my-suffix.model';
+import { ModalAlertComponent } from 'app/entities/reference-my-suffix/modal-alert/modal-alert.component';
 
 @Component({
   selector: 'jhi-job-search',
@@ -16,7 +17,7 @@ export class JobSearchComponent implements OnInit {
   applyTime: string;
   search: boolean;
   saveSuccessfully: string;
-
+  @ViewChild('alert') modal: ModalAlertComponent;
   constructor(private referenceService: ReferenceMySuffixService) {
     this.search = false;
     this.saveSuccessfully = '';
@@ -38,7 +39,7 @@ export class JobSearchComponent implements OnInit {
 
   createReferencesuccessfully(res: HttpResponse<IReferenceMySuffix>) {
     this.saveSuccessfully = 'Reference have been saved';
-    alert('Saved');
+    this.modal.setModalInfoAndOpen(this.saveSuccessfully);
   }
   createReferenceunsuccessfully(res: any) {
     alert('Faile');
