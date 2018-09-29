@@ -60,9 +60,6 @@ export class DislayReferenceComponent implements OnInit {
        }
     }
     return path;
-    window.open();
-    const win = window.open('path', '_blank');
-    win.focus();
   }
 
 }
