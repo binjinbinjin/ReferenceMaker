@@ -146,6 +146,8 @@
           <div class="oneLine">
             <button class="btn btn-primary mb-2 inline flex-item" (click)="creteNewReference(form)">Create Reference</button>
             <button *ngIf="form.valid" class="btn btn-primary mb-2 inline flex-item" (click)="creteNewReference(form); clear(); scroll(questionnaire)">Create Reference And Clear</button>
+            <button *ngIf="form.valid" class="btn btn-primary mb-2 inline flex-item" (click)="creteNewReference(form); copyToClipboard(referencFile); clear(); scroll(questionnaire)">Create Reference, Clear And Copy To Clipboard</button>
+
           </div>
         </form>
       </div>
