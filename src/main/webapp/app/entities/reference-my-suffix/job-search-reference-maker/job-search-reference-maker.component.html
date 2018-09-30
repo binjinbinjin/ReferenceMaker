@@ -177,21 +177,23 @@
         <button class="btn btn-light inline flex-item" (click)="clear(); scroll(questionnaire)">Clear</button>
       </div>
       <main #main [innerHTML]="displyCoverLetter"></main>
+
+      <br>
+      
+      <div class="createReference oneLine">
+        <button *ngIf="form.valid" class="btn btn-primary inline flex-item" (click)="creteNewReference(form)">Create
+          Reference</button>
+        <button *ngIf="form.valid" class="btn btn-primary inline flex-item" (click)="creteNewReference(form); clear(); scroll(questionnaire)">Create
+          Reference And Clear</button>
+      </div>
     </div>
 
-    <br>
-
-    <div class="createReference oneLine">
-    <button *ngIf="form.valid" class="btn btn-primary inline flex-item" (click)="creteNewReference(form)">Create Reference</button>
-    <button *ngIf="form.valid" class="btn btn-primary inline flex-item" (click)="creteNewReference(form); clear(); scroll(questionnaire)">Create Reference And Clear</button>
-
-    </div>
 
     <br>
 
     <div class="clearButton">
-      <button *ngIf="form.valid"  class="btn btn-primary" (click)="clear(); scroll(questionnaire)">Clear</button>
-      <button *ngIf="!form.valid" class="btn btn-secondary" (click)="scroll(questionnaire)">To Form</button>
+      <button *ngIf="form.valid && showGenerateContent"  class="btn btn-primary" (click)="clear(); scroll(questionnaire)">Clear</button>
+      <button *ngIf="!form.valid || !showGenerateContent" class="btn btn-secondary" (click)="scroll(questionnaire)">To Form</button>
     </div>
     <br> <br>
 
