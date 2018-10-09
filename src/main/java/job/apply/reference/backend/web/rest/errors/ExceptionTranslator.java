@@ -104,4 +104,9 @@ public class ExceptionTranslator implements ProblemHandling {
             .build();
         return create(ex, problem, request);
     }
+
+    @ExceptionHandler
+    public ResponseEntity<Problem> fileUploadFailur(FileUploadFailureException ex, NativeWebRequest request) {
+        return create(ex, request);
+    }
 }
