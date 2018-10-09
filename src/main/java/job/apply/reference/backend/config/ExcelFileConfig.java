@@ -8,13 +8,13 @@ import java.util.Collections;
 import java.util.List;
 
 @Configuration
-@ConfigurationProperties(prefix = "application.excel-file", ignoreUnknownFields = false)
+@ConfigurationProperties(prefix = "excel-file", ignoreUnknownFields = false)
 public class ExcelFileConfig {
 
     /**Number of headers in Excel file*/
     private int numberOfHeaders;
     /**List of headers*/
-    private List<String> headers = new ArrayList<>(Collections.singleton("String"));
+    private List<String> headers;
     /**Index of each header in headers*/
     private HeadersIndex headersIndex = new HeadersIndex();
     /**Date info saved in Excel File*/
