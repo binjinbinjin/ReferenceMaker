@@ -8,6 +8,35 @@
 # More information on configuration properties: https://www.jhipster.tech/common-application-properties/
 # ===================================================================
 
+#====================================================================
+#Excel file properties
+#The following properties is about how the data should be save in an
+#Excel file
+#====================================================================
+excel-file:
+    number-of-headers: 7
+    headers:
+        - Company Name
+        - Applied date
+        - Job title
+        - Location
+        - File Name
+        - Resume Name
+        - Cover Letter Name
+    headers-index:
+        company-name: 0
+        applied-date: 1
+        job-title: 2
+        location: 3
+        file-name: 4
+        resume-name: 5
+        cover-letter-name: 6
+    date:
+        date-separator: "/"
+        month-index: 0
+        day-index: 1
+        year-index: 2
+
 # ===================================================================
 # Standard Spring Boot properties.
 # Full reference is available at:
