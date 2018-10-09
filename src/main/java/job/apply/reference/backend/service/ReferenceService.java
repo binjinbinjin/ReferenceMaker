@@ -1,13 +1,12 @@
 package job.apply.reference.backend.service;
 
-import job.apply.reference.backend.service.dto.ReferenceDTO;
 import job.apply.reference.backend.domain.Reference;
-
-
+import job.apply.reference.backend.service.dto.ReferenceDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -43,10 +42,10 @@ public interface ReferenceService {
      * Save a reference.
      *
      * @param reference the entity to save
-     * @param time time instance
+     * @param time      time instance
      * @return the persisted entity
      */
-    Reference saveWithOutRestriction(Reference reference,  Instant time);
+    Reference saveWithOutRestriction(Reference reference, Instant time);
 
     /**
      * Get all the references.
@@ -56,11 +55,12 @@ public interface ReferenceService {
      */
     Page<ReferenceDTO> findAll(Pageable pageable);
 
+
     /**
      * Get all the references with company name that contains input characters.
      *
      * @param characters the characters
-     * @param pageable the pagination information
+     * @param pageable   the pagination information
      * @return the list of entities
      */
     Page<ReferenceDTO> findAllWithCompanyContainsAllLetters(String characters, Pageable pageable);
@@ -73,6 +73,13 @@ public interface ReferenceService {
      * @return the entity
      */
     Optional<ReferenceDTO> findOne(Long id);
+
+    /**
+     * Get all reference from database
+     *
+     * @return all references
+     */
+    List<Reference> getAllReferences();
 
     /**
      * Delete the "id" reference.

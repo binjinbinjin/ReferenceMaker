@@ -1,20 +1,19 @@
 package job.apply.reference.backend.service.impl;
 
-import job.apply.reference.backend.domain.ReferenceFile;
-import job.apply.reference.backend.service.*;
 import job.apply.reference.backend.domain.Reference;
 import job.apply.reference.backend.repository.ReferenceRepository;
+import job.apply.reference.backend.service.*;
 import job.apply.reference.backend.service.dto.ReferenceDTO;
 import job.apply.reference.backend.service.mapper.ReferenceMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -104,7 +103,7 @@ public class ReferenceServiceImpl implements ReferenceService {
         reference.setLocation(this.locationService.getOrCreate(referenceDTO.getLocation()));
         reference.setReferenceFile(this.referenceFileService.getOrCreate(referenceDTO.getReferenceFile()));
         reference.setResume(this.resumeService.getOrCreate(referenceDTO.getResume()));
-        reference.setApplyTime( reference.getApplyTime() == null ? Instant.now() : reference.getApplyTime());
+        reference.setApplyTime(reference.getApplyTime() == null ? Instant.now() : reference.getApplyTime());
         reference = this.referenceRepository.save(reference);
         return ReferenceDTO.setReferenceValue(reference);
     }
@@ -113,7 +112,7 @@ public class ReferenceServiceImpl implements ReferenceService {
      * Save a reference.
      *
      * @param reference the entity to save
-     * @param time time instance
+     * @param time      time instance
      * @return the persisted entity
      */
     @Override
@@ -123,7 +122,7 @@ public class ReferenceServiceImpl implements ReferenceService {
         reference.setLocation(this.locationService.getOrCreate(reference.getLocation().getLocation()));
         reference.setReferenceFile(this.referenceFileService.getOrCreate(reference.getReferenceFile().getFile()));
         reference.setResume(this.resumeService.getOrCreate(reference.getResume().getName()));
-        reference.setApplyTime( time == null ? Instant.now() : time);
+        reference.setApplyTime(time == null ? Instant.now() : time);
         return this.referenceRepository.save(reference);
     }
 
@@ -153,14 +152,14 @@ public class ReferenceServiceImpl implements ReferenceService {
         String regex = "";
         for (int i = 0; i < characters.length(); i++) {
             String currentCharacter = characters.substring(i, i + 1);
-            if(currentCharacter == " " || currentCharacter == "\t") {
+            if (currentCharacter == " " || currentCharacter == "\t") {
                 regex += "%";
             } else {
                 regex += currentCharacter;
             }
             regex += "%";
         }
-        Page<ReferenceDTO> result  = referenceRepository.findByCompanyMatchesRegex(regex, pageable).map(ReferenceDTO::setReferenceValue);
+        Page<ReferenceDTO> result = referenceRepository.findByCompanyMatchesRegex(regex, pageable).map(ReferenceDTO::setReferenceValue);
         this.log.debug("\n\n\nsearch {} : {}", regex, result.getContent());
         return result;
     }
@@ -177,6 +176,16 @@ public class ReferenceServiceImpl implements ReferenceService {
         log.debug("Request to get Reference : {}", id);
         return referenceRepository.findById(id)
             .map(ReferenceDTO::setReferenceValue);
+    }
+
+    /**
+     * Get all reference from database
+     *
+     * @return all references
+     */
+    @Override
+    public List<Reference> getAllReferences() {
+        return this.referenceRepository.findAll();
     }
 
     /**
