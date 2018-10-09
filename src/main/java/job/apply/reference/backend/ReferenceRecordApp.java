@@ -1,6 +1,5 @@
 package job.apply.reference.backend;
 
-import job.apply.reference.backend.Utilities.ExcelReader;
 import job.apply.reference.backend.config.ApplicationProperties;
 import job.apply.reference.backend.config.DefaultProfileUtil;
 
@@ -67,14 +66,6 @@ public class ReferenceRecordApp {
         ApplicationContext context = app.run(args);
         Environment env = context.getEnvironment();
         logApplicationStartup(env);
-//        ExcelReader reader = (ExcelReader)context.getBean(ExcelReader.class);
-//        try{
-//            reader.read();
-//            System.out.println("Done!!!");
-//        }catch(Exception e) {
-//            e.printStackTrace();
-//        }
-
 
     }
 

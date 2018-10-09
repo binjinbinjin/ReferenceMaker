@@ -1,10 +1,11 @@
-package job.apply.reference.backend.Utilities;
+package job.apply.reference.backend.service;
 
 import job.apply.reference.backend.domain.*;
 import job.apply.reference.backend.service.ReferenceService;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,15 +18,15 @@ import java.util.Iterator;
  */
 
 @Component
-public class ExcelReader {
+public class ExcelReaderService {
     public final String SAMPLE_XLSX_FILE_PATH = "/Users/jinbinliu/Desktop/reference/referenceRecord/JobSearchHistory.xlsx";
     public final ReferenceService referenceService;
 
-    public ExcelReader(ReferenceService referenceService) {
+    public ExcelReaderService(ReferenceService referenceService) {
         this.referenceService = referenceService;
     }
 
-    public void read() throws IOException, InvalidFormatException {
+    public void read(MultipartFile file) throws IOException, InvalidFormatException {
 
         // Creating a Workbook from an Excel file (.xls or .xlsx)
         Workbook workbook = WorkbookFactory.create(new File(SAMPLE_XLSX_FILE_PATH));
