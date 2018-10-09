@@ -16,6 +16,11 @@ public interface ReferenceMapper extends EntityMapper<ReferenceDTO, Reference> {
     @Mapping(source = "cover.id", target = "coverId")
     @Mapping(source = "referenceFile.id", target = "referenceFileId")
     @Mapping(source = "jobTitle.id", target = "jobTitleId")
+    @Mapping(source="location.location", target = "location")
+    @Mapping(source = "resume.name", target = "resume")
+    @Mapping(source= "cover.name", target = "cover")
+    @Mapping(source = "referenceFile.file", target = "referenceFile")
+    @Mapping(source = "jobTitle.jobTitle", target = "jobTitle")
     ReferenceDTO toDto(Reference reference);
 
     @Mapping(source = "locationId", target = "location")
