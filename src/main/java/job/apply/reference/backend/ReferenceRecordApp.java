@@ -5,6 +5,7 @@ import job.apply.reference.backend.config.DefaultProfileUtil;
 
 import io.github.jhipster.config.JHipsterConstants;
 
+import job.apply.reference.backend.config.ExcelFileConfig;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +24,7 @@ import java.util.Arrays;
 import java.util.Collection;
 
 @SpringBootApplication
-@EnableConfigurationProperties({LiquibaseProperties.class, ApplicationProperties.class})
+@EnableConfigurationProperties({LiquibaseProperties.class, ApplicationProperties.class, ExcelFileConfig.class})
 @EnableDiscoveryClient
 public class ReferenceRecordApp {
 
