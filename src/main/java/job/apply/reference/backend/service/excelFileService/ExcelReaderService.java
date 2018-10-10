@@ -10,7 +10,6 @@ import job.apply.reference.backend.web.rest.errors.FileUploadFailureException;
 import org.apache.poi.ss.usermodel.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -48,7 +47,7 @@ public class ExcelReaderService {
         log.debug("Start to save the data from file to database" );
         Workbook workbook =  null;
         try {
-            File file = FileUtil.covertMultipartFileToFile(multipartFile);
+            File file = FileUtil.convertMultipartFileToFile(multipartFile);
             // Creating a Workbook from an Excel file (.xls or .xlsx)
             workbook = WorkbookFactory.create(file);
             // Getting the Sheet at index zero

@@ -1,16 +1,22 @@
 package job.apply.reference.backend.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import job.apply.reference.backend.service.dto.DownloadPathDTO;
 import job.apply.reference.backend.service.excelFileService.ExcelReaderService;
 import job.apply.reference.backend.service.dto.UploadResultDTO;
+import job.apply.reference.backend.service.excelFileService.ExcelWriterService;
 import job.apply.reference.backend.service.impl.ReferenceServiceImpl;
 import job.apply.reference.backend.web.rest.errors.InternalServerErrorException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.net.URISyntaxException;
 
 @RestController
@@ -21,8 +27,11 @@ public class ExcelResource {
 
     private final ExcelReaderService readExcelFile;
 
-    public ExcelResource(ExcelReaderService readExcelFile) {
+    private final ExcelWriterService writerService;
+
+    public ExcelResource(ExcelReaderService readExcelFile, ExcelWriterService writerService) {
         this.readExcelFile = readExcelFile;
+        this.writerService = writerService;
     }
 
     /**
@@ -40,6 +49,14 @@ public class ExcelResource {
             throw new InternalServerErrorException("UploadResultDTO cannot be null");
         }
         return  ResponseEntity.ok().body(dto);
+    }
+
+    @GetMapping("/download")
+    @Timed
+    public ResponseEntity<DownloadPathDTO> getExcelFile(HttpServletRequest request) {
+        File resource = this.writerService.writeFile();
+        DownloadPathDTO dto = new DownloadPathDTO("/Job-Reference/AppliedReference.xlsx");
+        return ResponseEntity.ok().body(dto);
     }
 
 }

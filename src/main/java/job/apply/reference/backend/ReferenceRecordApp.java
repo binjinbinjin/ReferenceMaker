@@ -1,12 +1,15 @@
 package job.apply.reference.backend;
 
+import job.apply.reference.backend.Utilities.ExcelReader;
 import job.apply.reference.backend.config.ApplicationProperties;
 import job.apply.reference.backend.config.DefaultProfileUtil;
 
 import io.github.jhipster.config.JHipsterConstants;
 
 import job.apply.reference.backend.config.ExcelFileConfig;
+import job.apply.reference.backend.service.excelFileService.ExcelWriterService;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -18,6 +21,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.core.env.Environment;
 
 import javax.annotation.PostConstruct;
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Arrays;
@@ -67,6 +71,17 @@ public class ReferenceRecordApp {
         ApplicationContext context = app.run(args);
         Environment env = context.getEnvironment();
         logApplicationStartup(env);
+
+//        ExcelReader reader = (ExcelReader) context.getBean(ExcelReader.class);
+//        try {
+//            reader.read();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } catch (InvalidFormatException e) {
+//            e.printStackTrace();
+//        }
+//        ExcelWriterService writer = (ExcelWriterService) context.getBean(ExcelWriterService.class);
+//        writer.write();
 
     }
 
