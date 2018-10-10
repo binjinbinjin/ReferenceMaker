@@ -22,7 +22,7 @@ export class UploadExcelFileComponent implements OnInit {
   }
 
   uploadFile() {
-    this.fileService.uploadExcelFile(this.selectedFile).subscribe((res: HttpResponse<UploadFileInter >) => {
+    this.fileService.uploadExcelFile(this.selectedFile).toPromise().then((res: HttpResponse<UploadFileInter >) => {
       alert('Message: ' + res.body.message + '  Result: ' + res.body.result);
       this.router.navigate(['']);
     });

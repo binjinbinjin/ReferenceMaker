@@ -2,7 +2,7 @@ import { HttpClient, HttpResponse} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { SERVER_API_URL } from 'app/app.constants';
 import { Observable } from 'rxjs';
-import { UploadFileInter } from 'app/excel-file/excel-file-model';
+import { UploadFileInter, DownloadPathInter } from 'app/excel-file/excel-file-model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,5 +19,7 @@ export class ExcelFileService {
 
   }
 
-
+  getExcelFile(): Observable<HttpResponse<DownloadPathInter>> {
+    return this.httpClient.get<DownloadPathInter>(this.resourceUrl + '/download', {observe: 'response'});
+  }
 }
