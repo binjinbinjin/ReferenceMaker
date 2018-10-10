@@ -1,3 +1,4 @@
+import { ExcelFileModule } from './excel-file/excel-file.module';
 import './vendor.ts';
 
 import { NgModule, Injector } from '@angular/core';
@@ -30,7 +31,8 @@ import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent
         ReferenceRecordCoreModule,
         ReferenceRecordHomeModule,
         ReferenceRecordAccountModule,
-        ReferenceRecordEntityModule
+        ReferenceRecordEntityModule,
+        ExcelFileModule
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent],
