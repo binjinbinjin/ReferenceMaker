@@ -34,8 +34,7 @@ public class ExcelResource {
     @PostMapping("/upload")
     @Timed
     public ResponseEntity<UploadResultDTO> uploadExcelFile(@RequestParam("file") MultipartFile file) throws URISyntaxException {
-
-        this.log.debug("\n\n\n\n\ngetFile: {}",file.getSize() );
+        this.log.debug("Get request to save the data in file to database");
         UploadResultDTO dto = this.readExcelFile.read(file);
         if (dto == null) {
             throw new InternalServerErrorException("UploadResultDTO cannot be null");

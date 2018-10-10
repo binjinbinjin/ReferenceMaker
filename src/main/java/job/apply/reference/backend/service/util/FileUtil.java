@@ -16,22 +16,11 @@ public class FileUtil {
     private FileUtil(){}
 
     public static File covertMultipartFileToFile(MultipartFile multipartFile) throws IOException {
-        log.debug("\n\n Covert file: {} ",multipartFile.getOriginalFilename());
         File file = new File(multipartFile.getOriginalFilename());
         file.createNewFile();
-        log.debug("\n\n Create file");
-
         FileOutputStream fileOutputStream = new FileOutputStream(file);
-        log.debug("\n\n Open stream");
-
         fileOutputStream.write(multipartFile.getBytes());
-        log.debug("\n\n Write stream");
-
         fileOutputStream.close();
-//        log.debug("\n\n create file" );
-//        multipartFile.transferTo(file);
-        log.debug("\n\nConvert successful" );
-
         return file;
     }
 

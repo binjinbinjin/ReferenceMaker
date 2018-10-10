@@ -45,17 +45,12 @@ public class ExcelReaderService {
      * @throws FileUploadFailureException for any exception that occur.
      */
     public UploadResultDTO read(MultipartFile multipartFile) {
+        log.debug("Start to save the data from file to database" );
         Workbook workbook =  null;
         try {
-            if (multipartFile == null) log.debug("fuck null");
-            else log.debug("Not null" );
             File file = FileUtil.covertMultipartFileToFile(multipartFile);
-            log.debug("\n\n to here aaa" );
-
             // Creating a Workbook from an Excel file (.xls or .xlsx)
             workbook = WorkbookFactory.create(file);
-
-            log.debug("\n\n to here" );
             // Getting the Sheet at index zero
             Sheet sheet = workbook.getSheetAt(0);
             this.getInforFormSheetAndSave(sheet);
@@ -74,6 +69,8 @@ public class ExcelReaderService {
         UploadResultDTO dto = new UploadResultDTO();
         dto.setMessage("Saved");
         dto.setResult(true);
+        log.debug("Finish to save the data from file to database" );
+
         return dto;
     }
 
@@ -86,7 +83,7 @@ public class ExcelReaderService {
         // Create a DataFormatter to format and get each cell's value as String
         DataFormatter dataFormatter = new DataFormatter();
 
-        // 2. Or you can use a for-each loop to iterate over the rows and columns
+        // Or you can use a for-each loop to iterate over the rows and columns
         boolean passHeader = true;
         for (Row row : sheet) {
             if (passHeader) {
