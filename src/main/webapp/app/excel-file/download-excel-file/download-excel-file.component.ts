@@ -1,7 +1,7 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ExcelFileService } from 'app/excel-file/excel-file.service';
-import { DownloadPath, DownloadPathInter } from 'app/excel-file/excel-file-model';
+import { DownloadPath } from 'app/excel-file/excel-file-model';
 @Component({
   selector: 'jhi-download-excel-file',
   templateUrl: './download-excel-file.component.html',
@@ -15,10 +15,9 @@ export class DownloadExcelFileComponent implements OnInit {
   }
 
   getFile() {
-    console.log("ddfdfd");
-    this.excelFileService.getExcelFile().subscribe((res) => {
-      console.log(res);
-      return null;
+    this.excelFileService.getExcelFile().subscribe((res: HttpResponse<DownloadPath>) => {
+      console.log(res.body);
+      // some error here
     });
   }
 
